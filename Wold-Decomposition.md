@@ -177,22 +177,22 @@ Second, 'hcat([circshift(y, i) for i in 1:lags])' horizontally concatenates arra
 
 For illustration, let $y = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]$. Similar to the actual example, suppose we need to compute 10 lags of this process. In this case, the expression hcat([circshift(y, i) for i in 1:lags]...) generates the following **matrix**:
 
-$$
-X_{ary} = 
-\begin{bmatrix}
-2  & 3  & \ldots & 10 & 11 \\
-3  & 4  & \ldots & 11 & 12 \\
-4  & 5  & \ldots & 12 & \text{NaN} \\
-5  & 6  & \ldots & \text{NaN} & \text{NaN} \\
-6  & 7  & \ldots & \text{NaN} & \text{NaN} \\
-7  & 8  & \ldots & \text{NaN} & \text{NaN} \\
-8  & 9  & \ldots & \text{NaN} & \text{NaN} \\
-9  & 10 & \ldots & \text{NaN} & \text{NaN} \\
-10 & 11 & \ldots & \text{NaN} & \text{NaN} \\
-11 & 12 & \ldots & \text{NaN} & \text{NaN} \\
-12 & \text{NaN} & \ldots & \text{NaN} & \text{NaN} 
+\[
+X_{\text{ary}} = \begin{bmatrix}
+2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 \\
+3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\
+4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & \text{NaN} \\
+5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & \text{NaN} & \text{NaN} \\
+6 & 7 & 8 & 9 & 10 & 11 & 12 & \text{NaN} & \text{NaN} & \text{NaN} \\
+7 & 8 & 9 & 10 & 11 & 12 & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} \\
+8 & 9 & 10 & 11 & 12 & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} \\
+9 & 10 & 11 & 12 & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} \\
+10 & 11 & 12 & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} \\
+11 & 12 & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} \\
+12 & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN}
 \end{bmatrix}
-$$
+\]
+
 while 'hcat([circshift(y, i) for i in 1:lags])' (note here the absence of the splat operator, i.e., the three dots) gives the following **list**:
 
 $$
@@ -210,6 +210,7 @@ X_{ary} =
 [11, 12, \ldots, \text{NaN}, \text{NaN}]
 \end{bmatrix}
 $$
+
 ### Estimating the AR model
 
 With this understood, let me continue and estimate the AR(10) process, i.e.,
@@ -268,6 +269,7 @@ With them, I estimate a MA(30) and obtain the sum of squared residuals. Mathemat
 $$
 y_t = \theta_0 + \sum_{i=1}^{30} \theta_i e_{t-i} + e_t
 $$
+
 which, in Julia, can be computed in a similar fashion as before:
 
 
