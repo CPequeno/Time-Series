@@ -448,8 +448,9 @@ y = cumsum(u)
 which is a random walk. The best predictor for this model is
 
 $$
-\hat{x}_t = \mathbb{E}[x_t | \mathcal{F}_{t-1}] = x_{t-1}
+\hat{x}_t = E[x_t \mid \mathcal{F}_{t-1}] = x_{t-1}
 $$
+
 
 
 ```julia
