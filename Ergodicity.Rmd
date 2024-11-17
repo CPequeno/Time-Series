@@ -1,14 +1,12 @@
 ---
 title: "Ergodic Theorem"
 author: "Carlos Pequeño (aka Pareto Deficient)"
-date: "2024-11-17"
 output: 
   html_document:
-    keep_md: true
-    self_contained: true
+    mathjax: default
 ---
 
-```{julia}
+```{julia, results='hide'}
 using Random
 using Plots
 using Statistics
@@ -152,47 +150,49 @@ Each thread computes its assigned subset of random walks and AR(1) processes ind
 
 ### Plot the results
 
-The code below creates an animation where, as the sample size increases from 1 to N, we generate plots of random walks and AR(1) processes, along with histograms of their mean values.
+The ORIGINAL code creates an animation where, as the sample size increases from 1 to N, we generate plots of random walks and AR(1) processes, along with histograms of their mean values. The animated plot is included in the folder.
 
 Basically, the code is generating an animated visualization where, as the sample size (i.e., the number of simulations, N) increases, several things are calculated. For each simulation, the code calculates the (ensemble) means of random walks and AR(1) processes in parallel. It then visualizes the random walks, AR(1) processes, and the distributions of their means, showing how the data and the mean distributions evolve as N grows.
 
-```{julia}
-animation = @animate for i in 1:50
-    S = Int(N * i / 50) # For computational reasons, I rename as S the number of simulations because I plot them in bunches. Doing it 1 by 1 would be a pain.
-    
-    sampled_random_walks = random_walks[1:S]
-    sampled_ar1_processes = ar1_processes[1:S]
+```{julia, results='hide'}
+sampled_random_walks = random_walks[1:N]
+sampled_ar1_processes = ar1_processes[1:N]
 
-    # Parallelized mean calculation
-    random_walk_averages = Vector{Float64}(undef, S)
-    ar1_averages = Vector{Float64}(undef, S)
+# Parallelized mean calculation
+random_walk_averages = Vector{Float64}(undef, N)
+ar1_averages = Vector{Float64}(undef, N)
 
-    Threads.@threads for j in 1:S
-        random_walk_averages[j] = mean(sampled_random_walks[j])
-        ar1_averages[j] = mean(sampled_ar1_processes[j])
-    end
-
-    p1 = plot(title="Random Walks", legend=false)
-    for rw in sampled_random_walks
-        plot!(p1, rw, lw=0.5, alpha=0.3, color=RGB(rand(), rand(), rand()))
-    end
-
-    p2 = plot(title="AR(1) Processes", legend=false)
-    for ar in sampled_ar1_processes
-        plot!(p2, ar, lw=0.5, alpha=0.3, color=RGB(rand(), rand(), rand()))
-    end
-
-    p3 = histogram(random_walk_averages, bins=30, normalize=true, alpha=0.5,
-                   label="Random Walk Means", color=:blue, title="Random Walk Means Density")
-    p4 = histogram(ar1_averages, bins=30, normalize=true, alpha=0.5,
-                   label="AR(1) Means", color=:red, title="AR(1) Means Density")
-
-    plot(p1, p2, p3, p4, layout=(2, 2), size=(900, 600))
+Threads.@threads for j in 1:N
+    random_walk_averages[j] = mean(sampled_random_walks[j])
+    ar1_averages[j] = mean(sampled_ar1_processes[j])
 end
 
-# Save the animation as a GIF
-gif_filename = "ergodic_animation.gif"
-gif(animation, gif_filename, fps=5)  # Adjust frame rate as needed
+# Create the first plot for random walks
+p1 = plot(title="Random Walks", legend=false)
+for rw in sampled_random_walks
+    plot!(p1, rw, lw=0.5, alpha=0.3, color=RGB(rand(), rand(), rand()))
+end
+
+# Create the second plot for AR(1) processes
+p2 = plot(title="AR(1) Processes", legend=false)
+for ar in sampled_ar1_processes
+    plot!(p2, ar, lw=0.5, alpha=0.3, color=RGB(rand(), rand(), rand()))
+end
+
+# Create the histogram for random walk means
+p3 = histogram(random_walk_averages, bins=30, normalize=true, alpha=0.5,
+               label="Random Walk Means", color=:blue, title="Random Walk Means Density")
+
+# Create the histogram for AR(1) means
+p4 = histogram(ar1_averages, bins=30, normalize=true, alpha=0.5,
+               label="AR(1) Means", color=:red, title="AR(1) Means Density")
+```
+
+```{julia}
+
+# Display all plots in a 2x2 layout
+plot(p1, p2, p3, p4, layout=(2, 2), size=(900, 600))
+
 ```
 
 On the one hand, for the AR(1) process, the sample means become increasingly concentrated around zero as the sample size grows, reflecting the process's ergodic behavior. On the other hand, for the random walk, the sample means show wider and wider tails as N increases. That is, while the ensemble mean is zero (i.e., the average across the simulations) as S goes to infinity, the time average (that is, the average across t for each simulation) is not zero, as t goes to infinity. That is why the tails of the random walk processes keep increasing as the number of simulations increases, contrasting with the remarkably narrow tails of the AR processes. This behavior reflects the non-ergodic nature of random walk process. A random walk does not converge to a fixed mean because the process tends to "drift" over time, and the time average does not converge to a well-defined constant value, thus violating the assumptions of the ergodic theorem. That is, while AR processes mean reversion, that is not the case for random walks, which impairs stationarity and, therefore, ergodicity.
@@ -305,7 +305,7 @@ for i in 1:N
 end
 ```
 
-Finally, given that I already computed the t-statistic, I can check the (relative) number of times the null is rejected. That is, that $t > critical \ value$.
+Finally, given that I already computed the t-statistic, I can check the (relative) number of times the null is rejected:
 
 ```{julia, eval = FALSE}
 reject_RW = 0

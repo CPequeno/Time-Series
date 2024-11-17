@@ -1,0 +1,899 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Ergodic Theorem},
+  pdfauthor={Carlos Pequeño (aka Pareto Deficient)},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Ergodic Theorem}
+\author{Carlos Pequeño (aka Pareto Deficient)}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{using} \BuiltInTok{Random}
+\ImportTok{using} \BuiltInTok{Plots}
+\ImportTok{using} \BuiltInTok{Statistics}
+\ImportTok{using} \BuiltInTok{Base.Threads}
+\ImportTok{using} \BuiltInTok{Distributions}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{introduction}{%
+\subsection{Introduction}\label{introduction}}
+
+This document provides an intuitive explanation of the ergodic theorem.
+The theorem asserts that if a process meets two key conditions ---weak
+stationarity and the mixing property--- the time series mean will
+converge (in probability or almost surely, depending of the ergodic
+theorem) to the ensemble mean. This theorem is a kind of (weak) law of
+large numbers (WLLN) where (1) identical distributed property is
+replaced by weak stationarity, which ensures the process has a constant
+mean over time and an autocovariance function that depends solely on the
+number of lags, and (2) the independent assumption is replaced by the
+mixing property, which guarantees that as the time intervals between
+observations grow, the dependence between variables diminishes to the
+point of being negligible.
+
+But, what the time series average converging to the ensemble average
+means? Consider a time series process, for example Spain GDP recordings
+from 1930 to 2020. Although following Karl Marx, history repeats itself,
+once as tragedy and later as farce, in general we cannot repeat exactly
+the same process again and again to check different counterfactuals in
+history. That is, we cannot repeat the history in order to check the GDP
+recordings if e.g.~Franco did not stage a coup d'état in 1936. Thus, we
+only have one and only one -finite- realization of an stochastic
+process. Let f(t) denotes the actual time series. We can compute the
+mean and the autocovariance function and an infinite number of
+statistical properties.
+
+Strict stationarity states that the statistical properties do not change
+over time. Formally: A stochastic process \({X_t}\) is said to be
+strictly stationary if the joint probability distribution of
+
+\[
+(X_{t_1}, X_{t_2}, \dots, X_{t_n})
+\] is the same as the joint probability distribution of:
+
+\[
+(X_{t_1+h}, X_{t_2+h}, \dots, X_{t_n+h}),
+\]
+
+for all \(t_1, t_2, \dots, t_n \in \mathbb{Z}\), \(h \in \mathbb{Z}\),
+and \(n \in \mathbb{N}\).
+
+Weakly stationarity states, basically, that the first and second moments
+of the process are time-invariant. Formally: a stochastic process
+\({X_t^{i}}\) for \(i \in {1, 2, ..., N}\) is said to be weakly
+stationary if the following conditions hold:
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\item
+  the mean of the process i for \(i \in {1, 2, ..., N}\) is constant
+  over time;
+
+  \[
+  E[X_t] = \mu, \quad \forall t \in \mathbb{Z}.
+  \]
+\end{enumerate}
+
+where \(E[X_t] = \frac{1}{N} \sum_{i=1}^{N} X_t^{(i)}\).
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{1}
+\item
+  the variance is constant over time; and
+
+  \[
+  Var(X_t) = \sigma^2, \quad \forall t \in \mathbb{Z}.
+  \]
+\end{enumerate}
+
+where \(Var[X_t] = \frac{1}{N} \sum_{i=1}^{N} (X_t^{(i)} - E[X_t])^2\).
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{2}
+\item
+  the autocovariance between two time points depends only on the time
+  lag \((h = t_2 - t_1\), and not on the actual times \(t_1\) and
+  \(t_2\)
+
+  \[
+  Cov(X_t, X_{t+h}) = \gamma(h), \quad \forall t, h \in \mathbb{Z}.
+  \]
+\end{enumerate}
+
+The transition to a probability model occurs when we consider all
+possible realizations with the same statistical properties (or, at
+least, the first two moments) as the recorded one. Thus, we create an
+artificially infinite number of realizations. This is the so-called
+ensemble. Due to the fact that we are assuming stationarity, we can
+assume that e.g.~the time average of each realization (including,
+obviously, the actual one)
+\({X_t^{(1)}}, {X_t^{(2)}}, ..., {X_t^{(n)}}\) is constant over time.
+That is,
+
+\[
+E[X_t^{(i)}] = E[X_t] = \mu
+\] \(\forall i \in {1, 2, ..., N}\). Note that the time average is not
+only constant across t but the same for all realizations. Now, let
+mixing property holds. That is,
+
+\[
+\lim_{t \to \infty} Cov(X_t, X_{t+h}) = 0.
+\] Therefore, by Ergodic theorem, we can conclude that
+
+\[
+\lim_{t \to \infty} \frac{1}{T} \sum_{t=1}^{T} X_t^{(i)} = E[X_t] = \mu,
+\] where the first equality is the ergodicity property, i.e., the
+equality of the time average with the ensemble average and the second
+equality comes from stationarity.
+
+\hypertarget{setup}{%
+\subsection{Setup}\label{setup}}
+
+Set the following parameters:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t }\OperatorTok{=} \FloatTok{100} \CommentTok{\# Number of observations of the process.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{N }\OperatorTok{=} \FloatTok{1000} \CommentTok{\# Number of simulations (different realizations of the process).}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 1000
+\end{verbatim}
+
+\hypertarget{define-the-ar-and-random-walk-processes}{%
+\subsubsection{Define the AR and random walk
+processes}\label{define-the-ar-and-random-walk-processes}}
+
+Now, consider two stochastic processes: an AR(1)
+
+\[
+y_t = \phi_1 y_{t-1} + \epsilon_t
+\] where we assume that \(\phi = 0.5\), so the process is not only
+stationary but causal, that is, the roots of the process are outside of
+the unitary circle, so the process can be expressed as a function of
+only past observations. It ensures the process does not rely on future
+inputs, making it feasible for real-world prediction. (I know, a somehow
+weird property to call it `causality', but basically causality is just
+invertibility for AR processes. That is, a causal AR can be expressed as
+a MA(\(\infty\)) and an invertible MA can be rewritten as a -causal-
+AR(\(\infty\))).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ϕ }\OperatorTok{=} \FloatTok{0.5}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 0.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{function} \FunctionTok{ar1\_process}\NormalTok{(t, ϕ)}
+\NormalTok{    ar1 }\OperatorTok{=} \FunctionTok{zeros}\NormalTok{(t)}
+    \ControlFlowTok{for}\NormalTok{ t }\KeywordTok{in} \FloatTok{2}\OperatorTok{:}\NormalTok{t}
+\NormalTok{        ar1[t] }\OperatorTok{=}\NormalTok{ ϕ }\OperatorTok{*}\NormalTok{ ar1[t}\OperatorTok{{-}}\FloatTok{1}\NormalTok{] }\OperatorTok{+} \FunctionTok{randn}\NormalTok{()}
+    \ControlFlowTok{end}
+    \ControlFlowTok{return}\NormalTok{ ar1}
+\KeywordTok{end}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ar1_process (generic function with 1 method)
+\end{verbatim}
+
+and a random walk
+
+\[
+x_t = x_{t-1} + u_t
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{function} \FunctionTok{random\_walk}\NormalTok{(t)}
+\NormalTok{    walk }\OperatorTok{=} \FunctionTok{cumsum}\NormalTok{(}\FunctionTok{randn}\NormalTok{(t))}
+    \ControlFlowTok{return}\NormalTok{ walk}
+\KeywordTok{end}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## random_walk (generic function with 1 method)
+\end{verbatim}
+
+Note that, as said, the AR is stationary while the random walk is not.
+In particular, \(E[X_t] = X_{t-1}\), do the mean is far from being
+constant. Also can be checked that the variance is not constant and that
+autocovariance depends not only on the lags, but on time.
+
+\hypertarget{simulation-and-parallelization}{%
+\subsubsection{Simulation and
+parallelization}\label{simulation-and-parallelization}}
+
+The following chunk basically generates, for each of N simulations, a
+random walk and an AR(1) process, both of size n (the number of time
+steps or data points). These are stored in two vectors, random\_walks
+and ar1\_processes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{random\_walks }\OperatorTok{=} \FunctionTok{Vector}\DataTypeTok{\{Vector\{Float64\}\}}\NormalTok{(}\ConstantTok{undef}\NormalTok{, N)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 1000-element Vector{Vector{Float64}}:
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##    ⋮
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ar1\_processes }\OperatorTok{=} \FunctionTok{Vector}\DataTypeTok{\{Vector\{Float64\}\}}\NormalTok{(}\ConstantTok{undef}\NormalTok{, N) }\CommentTok{\# The undef keyword indicates that the vectors are being allocated without initializing the values right away. They will be filled during the parallelized loop.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 1000-element Vector{Vector{Float64}}:
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##    ⋮
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+##  #undef
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\BuiltInTok{Threads}\NormalTok{.}\PreprocessorTok{@threads} \ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \FloatTok{1}\OperatorTok{:}\NormalTok{N}
+\NormalTok{    random\_walks[i] }\OperatorTok{=} \FunctionTok{random\_walk}\NormalTok{(t)}
+\NormalTok{    ar1\_processes[i] }\OperatorTok{=} \FunctionTok{ar1\_process}\NormalTok{(t, ϕ)}
+\ControlFlowTok{end}
+\end{Highlighting}
+\end{Shaded}
+
+Nonetheless, there is something else in the chunk: the `threads'
+command. By using Threads.@threads, I am instructing Julia to divide the
+task of generating ARs and random walks into multiple smaller tasks,
+each of which can be run concurrently (that is why I did allocate but
+not initialized the values of both processes). This can significantly
+reduce the overall time it takes to generate the data, especially if the
+machine has multiple CPU cores. This process is called parallelization.
+Without parallelization, I would generate each of the N random walks and
+AR(1) processes sequentially. However, this can be time-consuming,
+especially when N or n is large.
+
+Parellelization works in the following way:
+
+When the program executes the loop, the system might look like this
+(assuming N = 1000 and n = 100):
+
+Thread 1 might handle the first 250 random walks and AR(1) processes
+(from indices 1 to 250). Thread 2 handles the next 250 (from indices 251
+to 500). Thread 3 handles another 250 (from indices 501 to 750). Thread
+4 handles the final 250 (from indices 751 to 1000).
+
+Threads.@threads is used to take advantage of multi-core processing,
+where each core can handle different parts of the task simultaneously.
+By distributing the iterations across threads, you can scale the process
+efficiently, especially on machines with multiple cores, resulting in a
+significant speedup compared to running the loop sequentially.
+
+Each thread computes its assigned subset of random walks and AR(1)
+processes independently and in parallel, allowing for concurrent
+execution and thus reducing the overall computation time.
+
+\hypertarget{plot-the-results}{%
+\subsubsection{Plot the results}\label{plot-the-results}}
+
+The ORIGINAL code creates an animation where, as the sample size
+increases from 1 to N, we generate plots of random walks and AR(1)
+processes, along with histograms of their mean values. The animated plot
+is included in the folder.
+
+Basically, the code is generating an animated visualization where, as
+the sample size (i.e., the number of simulations, N) increases, several
+things are calculated. For each simulation, the code calculates the
+(ensemble) means of random walks and AR(1) processes in parallel. It
+then visualizes the random walks, AR(1) processes, and the distributions
+of their means, showing how the data and the mean distributions evolve
+as N grows.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sampled\_random\_walks }\OperatorTok{=}\NormalTok{ random\_walks[}\FloatTok{1}\OperatorTok{:}\NormalTok{N]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 1000-element Vector{Vector{Float64}}:
+##  [0.12867899587300508, 0.5323392920111908, -0.9590225105517491, 0.3092784256143342, 0.6999548688619879, -0.22916696023980437, -0.8144177205966672, 0.036021152040503546, 1.02984074212089, 1.5272616989539853  …  -11.823311553728608, -13.259452193998175, -15.372164430366434, -15.004202463488083, -13.546598065467252, -12.093710871864943, -12.181365978424061, -12.256905081114043, -11.821459336344645, -13.028029425955301]
+##  [0.09269331691745138, -0.7273258090815631, -1.692909438275472, -2.3047957522600866, -3.886373858649231, -2.99780565579877, -2.7009366399760157, -2.1482227218531436, -3.5637758839202807, -4.554758824014729  …  -10.61082250460568, -10.195774355145362, -8.38662507755525, -8.493907264689868, -7.5318051157352786, -7.9987727940222175, -8.251872370652682, -7.34843791275182, -7.9336724041814755, -8.614217331662335]
+##  [0.00626168779774354, -0.6520790027230292, 0.22027274844350658, -0.4836292487956852, -1.628658506441264, -2.2470432451818443, -2.0800222920712668, -2.2271367582707406, -2.100711337356408, -2.2113860654013195  …  -1.7434183966204284, -1.7005422891807527, -1.1042258381128858, 0.7332721715845583, 0.6997587728413817, 0.40560333173374896, -0.8273636379142038, -1.52165860598065, 0.03347407746762547, -0.5642875697821474]
+##  [1.1404717031668168, 1.3975406140454547, 1.8341220909520344, 0.4610921157909049, 0.6511541957737226, 0.25940918519728107, -0.24738942550617837, -0.5592338985543903, -0.6292811128074822, -0.6034797870207529  …  14.486342439046782, 14.546524587528529, 14.948724552918508, 15.221768361467294, 14.372932903635881, 15.09868317260801, 16.206973955896174, 17.257556033647553, 17.337186005235097, 17.617516685660444]
+##  [0.3332213657598722, 0.9612773124631, 0.02027857634249569, 0.7508817625648729, 1.0785879381026882, 1.8787135864254063, 3.5121113717481025, 4.262728445866246, 4.828494698555791, 4.54512032658614  …  9.530404710588911, 11.66549933738195, 12.463905519119264, 13.50953985606601, 14.914957976837702, 16.41584070478787, 14.619075375838666, 14.046592033397292, 12.866534666602112, 11.530254620097953]
+##  [0.7491467052733726, 0.7917415376935711, -0.19648451314829296, 0.008780960561682094, 0.35802776288621563, 0.4325369808943965, -0.10523789467192113, 1.4734140304640038, 1.1521780859568014, 0.41496860278685743  …  5.064756766734854, 5.518180777916171, 4.643813472720938, 3.8168841579661485, 5.825337636730629, 5.504238124240413, 5.163754543259523, 3.8211313663742565, 2.93172982400808, 1.9914523091838343]
+##  [-0.7651116172607132, -1.3314188187354166, -2.584068093470722, -3.4166811792395344, -4.216056125853694, -3.813395749562461, -4.664534632207329, -3.114343456660928, -3.6180573211217024, -4.5299633283696625  …  -1.0703411055122332, 1.8423298415069778, 2.5803464076183613, 1.728417070576905, 3.486272995494557, 3.538718772264273, 3.4886912937825527, 4.699707373941258, 4.1015954652615205, 4.181642336898123]
+##  [0.9592419045600026, 2.410397402423154, 1.773715713142852, 1.674946200826792, 2.50172313800115, 3.7916255450038316, 4.242719530074246, 4.111684616661282, 4.887587358217112, 4.297334685445639  …  11.78649611733166, 13.431316781057024, 13.91318862487979, 13.144319537788137, 12.914928155750749, 13.964730254326401, 14.45798410370443, 14.987077270639421, 16.620689034802258, 16.93139731047501]
+##  [1.7115662960220075, 3.207121144418693, 5.208744286328131, 5.621978939297087, 5.517680295872666, 4.116733414178186, 3.8003073889653782, 2.3295846249794914, 2.6929434845481883, 2.2680429987586703  …  -9.319385444819217, -10.210201087976438, -9.548849473308143, -9.839745014357133, -11.134726453058791, -10.632893728580218, -10.698142473614041, -10.353998069765874, -10.144145544165202, -11.279157003286592]
+##  [-1.3356653895718404, 0.10402864321352268, -2.0952939786009788, -2.7416533402473275, -2.7113748714140966, 0.18513537206791875, 1.3542451675397273, 1.5526245572186557, 2.237472081666076, 2.228446227505615  …  0.155375418987024, 0.6493463205039514, 1.341560287768204, 1.9374326253470253, 4.079297720184929, 4.969356836709829, 4.811078066147937, 4.642768719084581, 4.809692589751774, 3.532080591965914]
+##  ⋮
+##  [-1.7468464488451745, -2.1850089135668362, -1.923017638129696, -1.500817210828978, -0.08243719379018621, -1.9711553603944465, -2.1659290228612846, -2.6133550533485725, -3.8274816930831204, -3.0022999362938685  …  4.4719008202925075, 4.9500751742458515, 5.395474922963354, 5.427324078172051, 4.529958791982569, 3.97324501044641, 3.9482102848357, 3.900553429458576, 4.517507391772803, 4.89837883851316]
+##  [-0.7187486721408486, -1.9231953790930354, -3.7669952896995653, -3.9820982213727873, -3.671378984140197, -3.893574359253688, -3.2005373239750963, -4.551432938921644, -4.127349436052686, -3.902538540025126  …  -5.017343454371992, -5.305110653872631, -3.1347415659175715, -3.150172133763312, -2.669074703834965, -1.3291867500677994, -1.0823593634754625, -0.30178614102943935, -0.910732830804091, -0.546373478019277]
+##  [0.6232953252502504, -0.2699805696269394, -0.33083224412225987, -0.6383862797561914, -0.8002878284942609, 0.03904648880703343, -0.3486273948510128, 0.9781483319718418, 1.2305238101851654, 1.8172247537413466  …  1.9226250636590443, 2.9517979999922415, 2.4306821137999783, 3.3062283227228937, 2.7581508577698255, 1.4359238392175553, 0.5025059803378009, 0.4294369358161454, 0.43775998497658963, 0.5473972946042651]
+##  [1.5848809968526025, 2.5567349464199105, 0.7060422781335837, 0.6347894354241335, 1.3471432184249226, 0.04353704506619649, -2.3454303079675993, -3.9352476012064326, -3.5675276640653735, -2.7619368453201645  …  -9.753866372718873, -8.103593058138134, -8.88314417374796, -10.165086452720088, -11.004972375853527, -11.327224304926224, -12.577602985980743, -12.539475581898365, -13.438189530289737, -13.325365296760413]
+##  [-0.06514524123033244, 0.8430392813409571, -0.3478793429034783, -0.5173374485850735, -0.15278342552869317, 1.1802653314574432, 2.626903541610243, 3.3872893780135835, 2.342342444840836, 3.9465667063335315  …  9.997961081314173, 9.771924227549848, 11.421690216568972, 9.161817470983337, 8.76235236171085, 7.057996734644761, 6.962044956407853, 5.7272734980071505, 5.4860180168262955, 5.072237995792873]
+##  [1.8937131193902157, 2.183955792595076, 1.9557759346180257, 0.7385497792518048, -0.7796359150916838, -0.9716388187751861, -1.6417639321876332, -1.2929414230964296, -0.6817169416898932, 0.17957383380242065  …  -9.023647471512353, -9.675964584114226, -9.940013478457844, -10.635439446794456, -10.432205095653567, -10.473782774045981, -10.508465553522445, -9.509513382083364, -10.95336950264864, -9.687805104588756]
+##  [0.37270203810091174, 0.4285029817634777, 1.3285933769615637, 1.0778034281882434, 0.10098783247135867, 1.0365274066997623, 0.43855530958172073, 1.5412222235357351, 0.2885287580196355, 0.5257860642498461  …  -12.127336142818566, -12.370296298628924, -12.225950097706074, -10.064461240755605, -12.219059596037251, -12.168734471078695, -12.34705507810813, -12.036444858761067, -12.42194932365668, -13.70868567840252]
+##  [0.22345337407095406, 1.1027425282683316, 0.9610692451742284, 2.2943389577280895, 2.2780886169925667, 1.9763649517510926, 2.0059828231814127, 1.4527822639636903, 1.0159750686054416, 0.5690351771243709  …  2.4846213192072604, 1.7318785391663467, 1.1487682558548507, 3.048782670230576, 3.856073798933815, 4.911396161965418, 5.039042289445832, 5.568010474244894, 4.931952831475728, 3.388247651921061]
+##  [0.061731272727776176, -0.6145594887181671, -0.9069850186209565, -0.14241204535196, -0.15207724935672032, -0.20324608289962665, 2.294745846085958, 3.402002589933024, 4.44088474615179, 5.007479678136498  …  -1.8690773388948412, -1.5797298970684361, -1.17151513177449, -2.2825075723051507, -2.8702362880657817, -2.724320991396144, -1.2790085794068136, -0.763273635868932, -0.08170366594415418, 0.9245602028974378]
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sampled\_ar1\_processes }\OperatorTok{=}\NormalTok{ ar1\_processes[}\FloatTok{1}\OperatorTok{:}\NormalTok{N]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 1000-element Vector{Vector{Float64}}:
+##  [0.0, 0.6882850843126626, -0.08718281132300187, 1.5345594388189383, 1.2953217662513414, 0.7236332551753479, -0.6294299878652986, 0.1022745833549577, 1.4817152006339285, 0.15717365771297243  …  -0.7515480979188875, 0.15217213147423825, -1.0835328543179055, 0.24331776046834175, -1.9863447472630287, -1.1797096228021415, -0.02700825418623498, 0.4464314673307545, -0.4115180417024745, -0.17907152487630695]
+##  [0.0, 0.4486082633392707, 0.09734508959107518, 0.32752311514924215, 0.49032808454714855, 1.218370701679822, 1.9878884270532744, 0.6533436367729112, -0.8703344750762998, -0.11612898384957093  …  0.894894848145525, 1.393965560184037, 1.5180509941081883, 1.7764338278472032, 1.6241804271354905, 0.2792543440991163, -0.3528937352583666, -1.231520123940538, -0.3742510394909374, -0.9669291950798886]
+##  [0.0, -0.6161043845941541, -1.5302842534885794, 1.1550824090502494, -2.3486419167792425, -0.7403995622517839, -0.1859031267112231, 0.19292213538762398, -0.22092568358331796, 1.2381358531416187  …  0.6371031231497494, 1.5678796631274787, 0.13401071433048062, 0.1263613918224118, -1.0158659754538317, 1.745937986067019, 0.677772468405285, 0.6343120224234208, 0.5057561866043467, 0.6627345232403046]
+##  [0.0, 2.115093788557064, 1.539669557633566, 2.074460815193408, 0.2773737508232331, -2.3444606243487756, -0.005279346526750661, 0.3015359218794302, 1.2586236021954975, 2.477144218458222  …  0.37557869309477354, -1.3812793822860903, 0.663398041219747, 0.9006796723833017, -0.16539734081597945, 0.40596148237911867, -0.058199151128987714, 0.7492558676471632, -0.6673898072296438, 0.7897276823944125]
+##  [0.0, -1.6044940660416238, 0.4918132586026548, -0.15802193083786598, -1.0154180830278157, 0.2303459006665045, -1.0226395939728063, -0.26424726395432535, -0.11123348111887066, 1.9534983706233193  …  1.2745398428337218, -0.15444103998010528, 1.094585039774007, 0.6274678175984083, -0.12531398891674778, 0.9677896046057004, 0.6875510159710473, 1.8855446650015477, 0.9640199203703947, 0.06766168681370155]
+##  [0.0, -0.5289244207901855, -0.55826318677247, -0.915394934319445, -0.14552932396643037, 0.34781921722013537, 0.11147031592385206, 0.3472511050921112, 0.3523486738636984, 0.6771654298100791  …  -0.2190726272921224, 0.04548259115406697, 0.12525302532869526, -0.10518973056216693, -0.07113931659295146, 1.2769678199080454, 1.1487769826524796, 1.7036183895098604, 1.88439939869926, 0.7158196905280668]
+##  [0.0, 0.6288646320225207, 0.15883044741506938, -0.8485539192392656, 0.8779679211395861, 0.022090643686701827, -0.8282878599423137, -0.8312145027254143, -1.0040643416772985, 1.1268751534704693  …  -0.011326059760152878, -0.3511401526556592, -0.33313010119813125, -0.6035355130476572, -1.6645324600483151, -0.3924588286601773, -0.6659471159874107, -0.007415384623966903, 0.9672124994875542, -0.07990208027676537]
+##  [0.0, 1.9559389857291263, 0.20327478296438217, -0.3843167311093238, 0.8110466933442799, -1.6444171158570153, -1.9147934129472235, 0.3387978965698575, 1.6134497393890976, 2.507632846838515  …  -0.9096413857555942, -1.568002272140723, -1.790608833122147, -2.007677757503462, -1.915161772661699, -1.9080386482135165, -0.758479113727262, 1.2351087010562805, 1.888172102417062, -0.0976370742942374]
+##  [0.0, -0.6802339446419355, 0.5748637056160601, 0.5572210289634467, 1.6443079246121526, 0.6779277247170878, 0.19844590923104205, 0.2497532937885949, -0.2797848359816357, -0.6994251768643136  …  0.2800369669987087, -0.6800706510994605, 0.2293992080898345, -1.0607366395167979, -1.4296714392021184, -0.7914509581624751, 0.8417626366120642, 0.37402575476385674, -1.0011170222992016, 0.5157955268885982]
+##  [0.0, -0.6469365759546846, -1.6938754667801643, -0.34080078140204595, -0.5747598937692302, -1.3963038611914325, -0.456483219017858, 0.08880799721011676, -0.20852795491028314, -0.2409473746168568  …  0.9282124833954658, -0.9422507148134676, -0.6290535377131476, -0.7551184645363964, 0.34136866601468907, -0.7363112047176729, -0.36329398085167414, -0.15135108587217883, -1.378633572286345, -1.8770630921759182]
+##  ⋮
+##  [0.0, -1.3958573709077027, -0.1593619390119132, -2.17586221625099, -0.5069525800948111, 0.8087255826657059, 0.767472047037205, 0.7791322597003483, 1.0118799158441978, 1.6142274397142409  …  1.7806183585560669, 0.3863678420085769, 2.2752208442490476, 2.5950850213399104, 1.7320379292760337, 0.7848694094452574, 0.23138739190431226, -0.3675190291316034, -0.7034985566294663, 1.3236425092821502]
+##  [0.0, 0.08201435014123798, 0.6359520688020324, -0.7238754716795205, -1.5503268435191253, -0.3087322029151521, -0.17857087621471723, 1.935065654080899, 1.6056644123788122, 1.6842168871604883  …  -2.2227391899461706, -1.4540994973794457, 0.45557632441877793, 0.1435267915011614, -0.14913972919054524, -0.421245671696576, 0.23535135921119082, -2.0052423001195967, -2.0812346336182133, -1.0947841941819199]
+##  [0.0, -0.556782491075414, -1.704212587907728, -0.8387892655775814, -0.23134285784868502, -0.8636520652157507, -0.7684276773250209, 0.3638724038726787, 1.6241336729562363, 0.6243762157631447  …  1.562567050539486, 0.050271572595948166, -0.6581634731238016, 0.3467572494690732, -0.6790433862773744, -0.00994225152698075, -0.43816927122885785, -0.008251631914952595, -0.46784907769671774, 0.13751592046170305]
+##  [0.0, 0.025834128294019935, -1.0337477453100217, 0.17256399322589733, 1.0005305765385604, 1.1278411699423936, 1.5454430406963302, -0.19128757879996872, -0.521712241359156, -1.2110568202408385  …  -0.6439346731522968, -0.2779057412220818, -0.9015948798124103, -0.4001200770200325, 0.8131377261754409, 0.033544872695834116, -0.03834133064150553, -0.6767143759785818, 2.4990448139918073, 0.3978734975856919]
+##  [0.0, 2.2336196155581365, 2.074940347887106, 1.2897553133944677, 0.24098221449971158, 2.4497835550416065, 0.9936645001668106, 0.7326385961769326, 0.6925045276202835, -1.145455595946473  …  1.4304573937969804, 1.6378515827379143, 1.6498386837662138, 1.450475549305704, -1.3948707142772867, -1.8261043889731745, -0.7626568153849473, -0.0866371636224953, 0.8761421630953694, 1.9364575392015007]
+##  [0.0, -0.12671833305424157, 1.412718060298159, 1.5264516245252182, 2.5098986271894677, 0.1875465820216513, -1.464335087648533, 0.6806762141806768, 0.6636639576870724, -0.13190354100509766  …  1.4795876954331952, -1.170396541468727, 0.9388937435275584, 1.1979213102040993, 0.8427730013867668, 0.7536329035788123, 1.0634693382634595, 1.126843655981824, -0.2923178721818144, 0.05730590851027759]
+##  [0.0, -0.859370275232767, 1.0843211072456675, 1.262989511725368, 0.46996935364667086, -0.21670382430443838, -0.7267733901873696, 0.014312667488363184, 1.683549830292437, 1.7226739531759705  …  -1.940537848642158, -0.32321836958251704, -0.6941682600520672, 0.25485232011392894, 0.1994503090276298, -0.6259588059635784, -0.9281001354922467, 1.4169563069283662, -0.24861342375419704, -0.30170014703117687]
+##  [0.0, 2.3511702601359437, -0.6178065431760769, -0.3251655242137621, -1.3456263348669784, -1.1468379432243685, -0.17998855231801064, 1.1973213079372775, -0.341011359417156, 1.682202205618964  …  -0.32051231200224306, -0.3110809746448624, 2.0681800635121492, -0.2668341062710806, 3.017757933591626, 1.0522117519311012, -1.3465408251686566, -2.259503423988307, 0.22151635368326783, 2.606819834454208]
+##  [0.0, 0.643299750680137, -1.0788196158936398, 0.05978830915071731, 0.4269468705466852, 1.4882469053989207, 0.9035876375650025, -1.169687055875864, 0.42218872716366485, -0.2783215792344439  …  -1.0734575933623725, -0.3610736696061024, -1.3962681120400042, -1.1895520066183578, -1.1454901220554836, 0.7706081869436667, 1.4501682821447552, 0.4986872952347894, -0.978045508491719, -0.46840965181351096]
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\# Parallelized mean calculation}
+\NormalTok{random\_walk\_averages }\OperatorTok{=} \FunctionTok{Vector}\DataTypeTok{\{Float64\}}\NormalTok{(}\ConstantTok{undef}\NormalTok{, N)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 1000-element Vector{Float64}:
+##  NaN
+##    5.0e-324
+##  NaN
+##    5.0e-324
+##    7.835752138866e-312
+##    7.835752138866e-312
+##    7.832596158507e-312
+##    7.832596158507e-312
+##    7.83532740826e-312
+##    7.83532740826e-312
+##    ⋮
+##    7.83575211776e-312
+##    7.83575215689e-312
+##    7.835342747534e-312
+##  NaN
+##    7.8358493898e-312
+##  NaN
+##    7.835752117996e-312
+##  NaN
+##    7.835390845813e-312
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ar1\_averages }\OperatorTok{=} \FunctionTok{Vector}\DataTypeTok{\{Float64\}}\NormalTok{(}\ConstantTok{undef}\NormalTok{, N)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 1000-element Vector{Float64}:
+##    7.832596158507e-312
+##    7.83577016748e-312
+##    7.83532740826e-312
+##    7.835770279494e-312
+##  NaN
+##    0.0
+##  NaN
+##    7.83537934262e-312
+##  NaN
+##    0.0
+##    ⋮
+##    7.83016446875e-312
+##  NaN
+##    7.835378976854e-312
+##    7.83537942436e-312
+##    7.835769958233e-312
+##    7.835327382725e-312
+##    7.835770272537e-312
+##    7.835838697586e-312
+##    7.835769957363e-312
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\BuiltInTok{Threads}\NormalTok{.}\PreprocessorTok{@threads} \ControlFlowTok{for}\NormalTok{ j }\KeywordTok{in} \FloatTok{1}\OperatorTok{:}\NormalTok{N}
+\NormalTok{    random\_walk\_averages[j] }\OperatorTok{=} \FunctionTok{mean}\NormalTok{(sampled\_random\_walks[j])}
+\NormalTok{    ar1\_averages[j] }\OperatorTok{=} \FunctionTok{mean}\NormalTok{(sampled\_ar1\_processes[j])}
+\ControlFlowTok{end}
+
+\CommentTok{\# Create the first plot for random walks}
+\NormalTok{p1 }\OperatorTok{=} \FunctionTok{plot}\NormalTok{(title}\OperatorTok{=}\StringTok{"Random Walks"}\NormalTok{, legend}\OperatorTok{=}\ConstantTok{false}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Ergodicity_files/figure-latex/unnamed-chunk-6-J1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ rw }\KeywordTok{in}\NormalTok{ sampled\_random\_walks}
+    \FunctionTok{plot!}\NormalTok{(p1, rw, lw}\OperatorTok{=}\FloatTok{0.5}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{, color}\OperatorTok{=}\FunctionTok{RGB}\NormalTok{(}\FunctionTok{rand}\NormalTok{(), }\FunctionTok{rand}\NormalTok{(), }\FunctionTok{rand}\NormalTok{()))}
+\ControlFlowTok{end}
+
+\CommentTok{\# Create the second plot for AR(1) processes}
+\NormalTok{p2 }\OperatorTok{=} \FunctionTok{plot}\NormalTok{(title}\OperatorTok{=}\StringTok{"AR(1) Processes"}\NormalTok{, legend}\OperatorTok{=}\ConstantTok{false}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Ergodicity_files/figure-latex/unnamed-chunk-6-J2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ ar }\KeywordTok{in}\NormalTok{ sampled\_ar1\_processes}
+    \FunctionTok{plot!}\NormalTok{(p2, ar, lw}\OperatorTok{=}\FloatTok{0.5}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{, color}\OperatorTok{=}\FunctionTok{RGB}\NormalTok{(}\FunctionTok{rand}\NormalTok{(), }\FunctionTok{rand}\NormalTok{(), }\FunctionTok{rand}\NormalTok{()))}
+\ControlFlowTok{end}
+
+\CommentTok{\# Create the histogram for random walk means}
+\NormalTok{p3 }\OperatorTok{=} \FunctionTok{histogram}\NormalTok{(random\_walk\_averages, bins}\OperatorTok{=}\FloatTok{30}\NormalTok{, normalize}\OperatorTok{=}\ConstantTok{true}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.5}\NormalTok{,}
+\NormalTok{               label}\OperatorTok{=}\StringTok{"Random Walk Means"}\NormalTok{, color}\OperatorTok{=:}\NormalTok{blue, title}\OperatorTok{=}\StringTok{"Random Walk Means Density"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Ergodicity_files/figure-latex/unnamed-chunk-6-J3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\# Create the histogram for AR(1) means}
+\NormalTok{p4 }\OperatorTok{=} \FunctionTok{histogram}\NormalTok{(ar1\_averages, bins}\OperatorTok{=}\FloatTok{30}\NormalTok{, normalize}\OperatorTok{=}\ConstantTok{true}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.5}\NormalTok{,}
+\NormalTok{               label}\OperatorTok{=}\StringTok{"AR(1) Means"}\NormalTok{, color}\OperatorTok{=:}\NormalTok{red, title}\OperatorTok{=}\StringTok{"AR(1) Means Density"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Ergodicity_files/figure-latex/unnamed-chunk-6-J4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\# Display all plots in a 2x2 layout}
+\FunctionTok{plot}\NormalTok{(p1, p2, p3, p4, layout}\OperatorTok{=}\NormalTok{(}\FloatTok{2}\NormalTok{, }\FloatTok{2}\NormalTok{), size}\OperatorTok{=}\NormalTok{(}\FloatTok{900}\NormalTok{, }\FloatTok{600}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Ergodicity_files/figure-latex/unnamed-chunk-6-J5.pdf}
+
+On the one hand, for the AR(1) process, the sample means become
+increasingly concentrated around zero as the sample size grows,
+reflecting the process's ergodic behavior. On the other hand, for the
+random walk, the sample means show wider and wider tails as N increases.
+That is, while the ensemble mean is zero (i.e., the average across the
+simulations) as S goes to infinity, the time average (that is, the
+average across t for each simulation) is not zero, as t goes to
+infinity. That is why the tails of the random walk processes keep
+increasing as the number of simulations increases, contrasting with the
+remarkably narrow tails of the AR processes. This behavior reflects the
+non-ergodic nature of random walk process. A random walk does not
+converge to a fixed mean because the process tends to ``drift'' over
+time, and the time average does not converge to a well-defined constant
+value, thus violating the assumptions of the ergodic theorem. That is,
+while AR processes mean reversion, that is not the case for random
+walks, which impairs stationarity and, therefore, ergodicity.
+
+To make it even clearer, imagine that \{\(X_t\)\} are random walks which
+take only two values: 1 and -1. As t increases, a particular random walk
+process, e.g.~\(X_t^{i}\), for \(i \in {1, 2, ..., N}\) is highly
+implausible that satisfies \(\frac{1}{T} \sum_{t=1}^{T} X_t^{(i)} = 0\),
+because for a given value of t, the process can be consistently above or
+below zero. And as I said above, the trend precludes the process to
+exhibit mean reversion. Without loss of generality, let \(X_t^{1}\) to
+be a realization that more or less consistently went upwards zero.
+However, as the number or realizations, N, goes to infinity, there will
+be a realization, e.g., \(X_t^{24}\), which is, also more or less
+consistently, going downwards, compensating the trend of \({X_t^{1}}\).
+Hence, \(E[X_t] = 0\) as N, i.e., the sample size, goes to infinity.
+This is basically what we see in the top-left figure of the graph.
+
+\hypertarget{t-test-r2-and-durbin-watson-dw-statistics.}{%
+\subsubsection{T-test, R2 and Durbin-Watson (DW)
+statistics.}\label{t-test-r2-and-durbin-watson-dw-statistics.}}
+
+Finally, for each simulation of each stochastic process, let me
+calculate the \(R^2\):
+
+\[
+R^2 = 1 - \frac{\sum_{t=1}^{n} (X_t - \hat{X}_t)^2}{\sum_{t=1}^{n} (X_t - \bar{X})^2}
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{function} \FunctionTok{r\_squared}\NormalTok{(x, ϕ)}
+\NormalTok{    residuals }\OperatorTok{=}\NormalTok{ x[}\FloatTok{2}\OperatorTok{:}\KeywordTok{end}\NormalTok{] }\OperatorTok{.{-}}\NormalTok{ ϕ }\OperatorTok{.*}\NormalTok{ x[}\FloatTok{1}\OperatorTok{:}\KeywordTok{end}\OperatorTok{{-}}\FloatTok{1}\NormalTok{]}
+\NormalTok{    ss\_total }\OperatorTok{=} \FunctionTok{sum}\NormalTok{((x }\OperatorTok{.{-}} \FunctionTok{mean}\NormalTok{(x)) }\OperatorTok{.\^{}} \FloatTok{2}\NormalTok{)}
+\NormalTok{    ss\_residual }\OperatorTok{=} \FunctionTok{sum}\NormalTok{(residuals }\OperatorTok{.\^{}} \FloatTok{2}\NormalTok{)}
+    \ControlFlowTok{return} \FloatTok{1} \OperatorTok{{-}}\NormalTok{ ss\_residual }\OperatorTok{/}\NormalTok{ ss\_total}
+\KeywordTok{end}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## r_squared (generic function with 1 method)
+\end{verbatim}
+
+the t-statistic:
+
+\[
+t = \frac{\bar{X}}{\text{SE}(\bar{X})}
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{function} \FunctionTok{t\_statistic}\NormalTok{(x)}
+    \ControlFlowTok{return} \FunctionTok{mean}\NormalTok{(x) }\OperatorTok{/}\NormalTok{ (}\FunctionTok{std}\NormalTok{(x) }\OperatorTok{/} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{length}\NormalTok{(x)))}
+\KeywordTok{end}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## t_statistic (generic function with 1 method)
+\end{verbatim}
+
+and the DW statistic:
+
+\[
+DW = \frac{\sum_{t=2}^{n} (e_t - e_{t-1})^2}{\sum_{t=1}^{n} e_t^2}
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{function} \FunctionTok{durbin\_watson}\NormalTok{(x, ϕ)}
+\NormalTok{    residuals }\OperatorTok{=}\NormalTok{ x[}\FloatTok{2}\OperatorTok{:}\KeywordTok{end}\NormalTok{] }\OperatorTok{.{-}}\NormalTok{ ϕ }\OperatorTok{.*}\NormalTok{ x[}\FloatTok{1}\OperatorTok{:}\KeywordTok{end}\OperatorTok{{-}}\FloatTok{1}\NormalTok{]}
+\NormalTok{    numerator }\OperatorTok{=} \FunctionTok{sum}\NormalTok{(}\FunctionTok{diff}\NormalTok{(residuals) }\OperatorTok{.\^{}} \FloatTok{2}\NormalTok{)}
+\NormalTok{    denominator }\OperatorTok{=} \FunctionTok{sum}\NormalTok{(x[}\FloatTok{2}\OperatorTok{:}\KeywordTok{end}\NormalTok{] }\OperatorTok{.\^{}} \FloatTok{2}\NormalTok{)}
+    \ControlFlowTok{return}\NormalTok{ numerator }\OperatorTok{/}\NormalTok{ denominator}
+\KeywordTok{end}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## durbin_watson (generic function with 1 method)
+\end{verbatim}
+
+which is useful for detecting first-order autocorrelation in the
+residuals of regression models. By comparing the residuals' behavior
+over time, it tells us whether the model has captured all relevant
+temporal patterns or if it needs adjustments (e.g., by including lagged
+variables, trends, or seasonality). Values close to 2 suggest that the
+model residuals are independent, while values much smaller or larger
+than 2 indicate potential autocorrelation issues.
+
+Next, I create a matrix of two columns and N rows to store the
+statistics for each realization of both processes too.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Matrices to store statistics}
+\NormalTok{ts }\OperatorTok{=} \FunctionTok{zeros}\NormalTok{(N, }\FloatTok{2}\NormalTok{)    }\CommentTok{\# t{-}statistics for random walk and AR(1)}
+\NormalTok{DW }\OperatorTok{=} \FunctionTok{zeros}\NormalTok{(N, }\FloatTok{2}\NormalTok{)   }\CommentTok{\# Durbin{-}Watson for random walk and AR(1)}
+\NormalTok{R2 }\OperatorTok{=} \FunctionTok{zeros}\NormalTok{(N, }\FloatTok{2}\NormalTok{)   }\CommentTok{\# R{-}squared for random walk and AR(1)}
+\end{Highlighting}
+\end{Shaded}
+
+Also, let `reject\_RW' and `reject\_AR' be the number of times that we
+reject the null hypothesis in \(H_0: E[X_t] = 0\) vs
+\(H_0: E[X_t] != 0\). (They are in levels, but once the algorithm
+computes everything, they are normalized to be interpreted as
+probabilities.)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{reject\_RW }\OperatorTok{=} \FloatTok{0}
+\NormalTok{reject\_AR }\OperatorTok{=} \FloatTok{0}
+\end{Highlighting}
+\end{Shaded}
+
+Set a significance level for the test:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{α }\OperatorTok{=} \FloatTok{0.05}
+\end{Highlighting}
+\end{Shaded}
+
+and compute all the statistics for each simulation (rows) and process
+(columns) using a for loop.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \FloatTok{1}\OperatorTok{:}\NormalTok{N}
+
+    \CommentTok{\# Random walk t{-}statistic}
+\NormalTok{    ts[i, }\FloatTok{1}\NormalTok{] }\OperatorTok{=} \FunctionTok{t\_statistic}\NormalTok{(random\_walks[i])}
+    \CommentTok{\# AR(1) process t{-}statistic}
+\NormalTok{    ts[i, }\FloatTok{2}\NormalTok{] }\OperatorTok{=} \FunctionTok{t\_statistic}\NormalTok{(ar1\_processes[i])}
+    
+\ControlFlowTok{end}
+   
+\NormalTok{ts }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 1000×2 Matrix{Float64}:
+##  -13.0633    0.538047
+##  -25.0065    2.61287
+##    2.07188   1.63709
+##   11.7997    2.4364
+##   24.5884   -0.737444
+##   17.0624   -3.2657
+##   -9.01055   1.088
+##   23.6563   -3.42384
+##   -8.13187   1.41194
+##   -2.07259   0.602996
+##    ⋮        
+##    2.99399   1.92148
+##  -21.6535   -2.68482
+##    4.99177  -1.01966
+##  -17.717    -0.691376
+##   30.4725   -0.29835
+##  -14.8678    2.97023
+##  -11.6101   -2.11611
+##    4.68299   0.202372
+##   12.1027   -1.08889
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \FloatTok{1}\OperatorTok{:}\NormalTok{N}
+    
+    \CommentTok{\# R{-}squared for random walk}
+\NormalTok{    R2[i, }\FloatTok{1}\NormalTok{] }\OperatorTok{=} \FunctionTok{r\_squared}\NormalTok{(random\_walks[i], }\FloatTok{1}\NormalTok{)}
+    \CommentTok{\# R{-}squared for AR(1) process}
+\NormalTok{    R2[i, }\FloatTok{2}\NormalTok{] }\OperatorTok{=} \FunctionTok{r\_squared}\NormalTok{(ar1\_processes[i], }\FloatTok{0.5}\NormalTok{)}
+    
+\ControlFlowTok{end}
+
+\NormalTok{R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 1000×2 Matrix{Float64}:
+##  0.967579   0.232719
+##  0.909129   0.16931
+##  0.922142   0.24621
+##  0.968872   0.188447
+##  0.921178   0.335665
+##  0.84484    0.190934
+##  0.903641   0.100909
+##  0.95568    0.250705
+##  0.957169   0.147197
+##  0.75372    0.377757
+##  ⋮         
+##  0.816499   0.27545
+##  0.758814   0.25579
+##  0.92688    0.279526
+##  0.916812   0.196405
+##  0.87162    0.339565
+##  0.951197  -0.0259064
+##  0.969256   0.223308
+##  0.933818   0.180615
+##  0.902133   0.201275
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \FloatTok{1}\OperatorTok{:}\NormalTok{N}
+
+    \CommentTok{\# Durbin{-}Watson statistic for random walk}
+\NormalTok{    DW[i, }\FloatTok{1}\NormalTok{] }\OperatorTok{=} \FunctionTok{durbin\_watson}\NormalTok{(random\_walks[i], }\FloatTok{1}\NormalTok{)}
+    \CommentTok{\# Durbin{-}Watson statistic for AR(1) process}
+\NormalTok{    DW[i, }\FloatTok{2}\NormalTok{] }\OperatorTok{=} \FunctionTok{durbin\_watson}\NormalTok{(ar1\_processes[i], }\FloatTok{0.5}\NormalTok{)}
+    
+\ControlFlowTok{end}
+\end{Highlighting}
+\end{Shaded}
+
+Finally, given that I already computed the t-statistic, I can check the
+(relative) number of times the null is rejected:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{reject\_RW }\OperatorTok{=} \FloatTok{0}
+\NormalTok{reject\_AR }\OperatorTok{=} \FloatTok{0}
+
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \FloatTok{1}\OperatorTok{:}\NormalTok{N}
+    \ControlFlowTok{if} \FunctionTok{abs}\NormalTok{(ts[i, }\FloatTok{1}\NormalTok{]) }\OperatorTok{\textgreater{}} \FunctionTok{quantile}\NormalTok{(}\FunctionTok{TDist}\NormalTok{(t}\OperatorTok{{-}}\FloatTok{1}\NormalTok{), }\FloatTok{1} \OperatorTok{{-}}\NormalTok{ α }\OperatorTok{/} \FloatTok{2}\NormalTok{)}
+\NormalTok{        reject\_RW }\OperatorTok{+=} \FloatTok{1}
+    \ControlFlowTok{end}
+    \ControlFlowTok{if} \FunctionTok{abs}\NormalTok{(ts[i, }\FloatTok{2}\NormalTok{]) }\OperatorTok{\textgreater{}} \FunctionTok{quantile}\NormalTok{(}\FunctionTok{TDist}\NormalTok{(t}\OperatorTok{{-}}\FloatTok{1}\NormalTok{), }\FloatTok{1} \OperatorTok{{-}}\NormalTok{ α }\OperatorTok{/} \FloatTok{2}\NormalTok{)}
+\NormalTok{        reject\_AR }\OperatorTok{+=} \FloatTok{1}
+    \ControlFlowTok{end}
+\ControlFlowTok{end}
+\end{Highlighting}
+\end{Shaded}
+
+As it can be checked, the \(DW \approx 1 < 2\), which implies positive
+autocorrelation (by construction, the existence of autocorrelation in an
+AR or a random walk was something to expect) and the null is rejected
+with high probability for the random walk process than for the AR(1), as
+expected.
+
+\end{document}
