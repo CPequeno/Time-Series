@@ -1,6 +1,6 @@
 ---
 title: "Ergodic Theorem"
-author: "Carlos Pequeño (aka Pareto Deficient)"
+author: "Pareto Deficient (CPequeno)"
 output: 
   html_document:
     keep_md: true
@@ -9,25 +9,18 @@ output:
       in_header: header.html
 ---
 
-
-```julia
-using Random
-using Plots
-using Statistics
-using Base.Threads
-using Distributions
-```
-
 ## Introduction
 
 This document provides an intuitive explanation of the ergodic theorem. The theorem asserts that if a process meets two key conditions —weak stationarity and the mixing property— the time series mean will converge (in probability or almost surely, depending of the ergodic theorem) to the ensemble mean. This theorem is a kind of (weak) law of large numbers (WLLN) where (1) identical distributed property is replaced by weak stationarity, which ensures the process has a constant mean over time and an autocovariance function that depends solely on the number of lags, and (2) the independent assumption is replaced by the mixing property, which guarantees that as the time intervals between observations grow, the dependence between variables diminishes to the point of being negligible.
 
-But, what the time series average converging to the ensemble average means? Consider a time series process, for example Spain GDP recordings from 1930 to 2020. Although following Karl Marx, history repeats itself, once as tragedy and later as farce, in general we cannot repeat exactly the same process again and again to check different counterfactuals in history. That is, we cannot repeat the history in order to check the GDP recordings if e.g. Franco did not stage a coup d'état in 1936. Thus, we only have one and only one -finite- realization of an stochastic process. Let f(t) denotes the actual time series. We can compute the mean and the autocovariance function and an infinite number of statistical properties.
+## Setup
+
+Consider a time series process, for example Spain GDP recordings from 1930 to 2020. Although following Karl Marx, history repeats itself, once as tragedy and later as farce, in general we cannot repeat exactly the same process again and again to check different counterfactuals in history. That is, we cannot repeat the history in order to check the GDP recordings if e.g. Franco did not stage a coup d'état in 1936. Thus, we only have one and only one -finite- realization of an stochastic process. Let f(t) denotes the actual time series. We can compute the mean and the autocovariance function and an infinite number of statistical properties.
 
 Strict stationarity states that the statistical properties do not change over time. Formally: A stochastic process ${X_t}$ is said to be strictly stationary if the joint probability distribution of $(X_{t_1}, X_{t_2}, \dots, X_{t_n})$ is the same as the joint probability distribution of:
 
 $$
-(X_{t_1+h}, X_{t_2+h}, \dots, X_{t_n+h}),
+(X_{t_1+h}, \ X_{t_2+h}, \dots, \ X_{t_n+h}),
 $$
 
 for all $t_1, t_2, \dots, t_n \in \mathbb{Z}$, $h \in \mathbb{Z}$, and $n \in \mathbb{N}$.
@@ -51,7 +44,7 @@ $$
 (3) the autocovariance between two time points depends only on the time lag $(h = t_2 - t_1$, and not on the actual times $t_1$ and $t_2$
     
 $$
-Cov(X_t, X_{t+h}) = \gamma(h), \quad \forall t, h \in \mathbb{Z}.
+Cov(X_t, \ X_{t+h}) = \gamma(h), \quad \forall t, h \in \mathbb{Z}.
 $$
 
 The transition to a probability model occurs when we consider all possible realizations with the same statistical properties (or, at least, the first two moments) as the recorded one. Thus, we create an artificially infinite number of realizations. This is the so-called ensemble. Due to the fact that we are assuming stationarity, we can assume that e.g. the time average of each realization (including, obviously, the actual one) ${X_t^{(1)}}, {X_t^{(2)}}, ..., {X_t^{(n)}}$ is constant over time. That is,
@@ -64,7 +57,7 @@ $$
 $\forall i \in {1, 2, ..., N}$. Note that the time average is not only constant across t but it is the same for all realizations. This is due to the fact that all realizations comes from the same probability (ensemble) model. Now, let mixing property holds. That is,
 
 $$
-\lim_{t \to \infty} Cov(X_t, X_{t+h}) = 0.
+\lim_{t \to \infty} Cov(X_t, \ X_{t+h}) = 0.
 $$
 
 Therefore, by the Ergodic theorem, we can conclude that
@@ -74,27 +67,6 @@ $$
 $$
 
 where the first equality is the ergodicity property, i.e., the equality of the time average with the ensemble average and the second equality comes from stationarity.
-
-## Setup
-
-Set the following parameters:
-
-
-```julia
-t = 100 # Number of observations of the process.
-```
-
-```
-## 100
-```
-
-```julia
-N = 1000 # Number of simulations (different realizations of the process).
-```
-
-```
-## 1000
-```
 
 
 ### Define the AR and random walk processes
@@ -106,6 +78,15 @@ X_t = \phi_1 X_{t-1} + \epsilon_t
 $$
 
 where we assume that $\phi = 0.5$, so the process is not only stationary but causal, that is, the roots of the process are outside of the unitary circle, so the process can be expressed as a function of only past observations. It ensures the process does not rely on future inputs, making it feasible for real-world prediction. (I know, a somehow weird property to call it 'causality', but basically causality is just invertibility for AR processes. That is, a causal AR can be expressed as a MA($\infty$) and an invertible MA can be rewritten as a -causal- AR($\infty$)).
+
+
+```julia
+using Random
+using Plots
+using Statistics
+using Base.Threads
+using Distributions
+```
 
 
 ```julia
@@ -153,6 +134,12 @@ Note that, for the random walk process, $E[X_t] = X_{t-1}$, so the mean is far f
 ### Simulation and parallelization
 
 The following chunk basically generates, for each of N simulations, a random walk and an AR(1) process, both of size n (the number of time steps or data points). These are stored in two vectors, random_walks and ar1_processes.
+
+
+```julia
+t = 100 # Number of observations of the process.
+N = 1000 # Number of simulations (different realizations of the process).
+```
 
 
 ```julia
@@ -339,26 +326,26 @@ ts
 
 ```
 ## 1000×2 Matrix{Float64}:
-##   -0.00805635   2.76643
-##    7.39199      3.04435
-##  -24.2581      -4.25882
-##    8.00836      0.86128
-##   11.9743      -0.256987
-##   19.6417       1.18983
-##   15.8322      -1.63455
-##  -13.9767       3.61838
-##    6.77413     -1.49862
-##   -3.92575     -0.598776
-##    ⋮           
-##   19.2458      -3.05214
-##   27.7266       0.546459
-##  -11.2193      -1.13726
-##   -0.531492    -0.238301
-##   -7.9369      -1.69385
-##   22.4093       0.750197
-##  -22.068       -2.18624
-##    8.64008     -1.64105
-##   -8.47728      0.445851
+##   -8.04523    0.84608
+##    8.52411    2.81597
+##   -8.87541   -0.556331
+##  -19.1477    -0.00263622
+##    6.1346    -1.06639
+##   29.5305    -0.357958
+##  -11.7825    -0.609842
+##  -20.9205    -0.80142
+##  -22.5524     1.51035
+##   30.983     -0.762345
+##    ⋮         
+##    3.76443    0.768547
+##    4.21054    0.0383925
+##  -23.6486     1.11999
+##  -14.0483    -0.0982824
+##   -0.662708   0.805895
+##    9.96636   -0.736951
+##   21.6014    -0.480651
+##  -19.9721     0.614216
+##   -0.120696  -0.883189
 ```
     
 
@@ -377,26 +364,26 @@ R2
 
 ```
 ## 1000×2 Matrix{Float64}:
-##  0.940891   0.331271
-##  0.985732   0.333093
-##  0.933545   0.137429
-##  0.955016   0.205896
-##  0.713237   0.173789
-##  0.918209   0.326281
-##  0.91863    0.102102
-##  0.901075   0.173469
-##  0.86796    0.113886
-##  0.92806    0.357478
+##  0.909512   0.283703
+##  0.820465   0.383709
+##  0.926956   0.166292
+##  0.933181   0.333862
+##  0.86219    0.219462
+##  0.726024   0.189105
+##  0.974892  -0.00935489
+##  0.960618   0.380635
+##  0.959346   0.093222
+##  0.901681   0.152897
 ##  ⋮         
-##  0.896338   0.26056
-##  0.902707   0.177663
-##  0.899073   0.254766
-##  0.969714  -0.0526198
-##  0.986791   0.231682
-##  0.875116   0.148794
-##  0.933128   0.212365
-##  0.922962   0.1953
-##  0.791085   0.243452
+##  0.762632   0.214222
+##  0.75996    0.0997739
+##  0.94499    0.294861
+##  0.96254    0.151221
+##  0.952446   0.171359
+##  0.832561   0.218315
+##  0.962795   0.418042
+##  0.971101   0.382691
+##  0.898503   0.318152
 ```
 
 
