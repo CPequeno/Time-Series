@@ -1,11 +1,12 @@
 ---
 title: "Ergodic Theorem"
 author: "Carlos Pequeño (aka Pareto Deficient)"
-date: "2024-11-17"
 output: 
   html_document:
     keep_md: true
     self_contained: true
+    includes:
+      in_header: header.html
 ---
 
 
@@ -23,12 +24,7 @@ This document provides an intuitive explanation of the ergodic theorem. The theo
 
 But, what the time series average converging to the ensemble average means? Consider a time series process, for example Spain GDP recordings from 1930 to 2020. Although following Karl Marx, history repeats itself, once as tragedy and later as farce, in general we cannot repeat exactly the same process again and again to check different counterfactuals in history. That is, we cannot repeat the history in order to check the GDP recordings if e.g. Franco did not stage a coup d'état in 1936. Thus, we only have one and only one -finite- realization of an stochastic process. Let f(t) denotes the actual time series. We can compute the mean and the autocovariance function and an infinite number of statistical properties.
 
-Strict stationarity states that the statistical properties do not change over time. Formally: A stochastic process ${X_t}$ is said to be strictly stationary if the joint probability distribution of
-
-$$
-(X_{t_1}, X_{t_2}, \dots, X_{t_n})
-$$
-is the same as the joint probability distribution of:
+Strict stationarity states that the statistical properties do not change over time. Formally: A stochastic process ${X_t}$ is said to be strictly stationary if the joint probability distribution of $(X_{t_1}, X_{t_2}, \dots, X_{t_n})$ is the same as the joint probability distribution of:
 
 $$
 (X_{t_1+h}, X_{t_2+h}, \dots, X_{t_n+h}),
@@ -40,41 +36,43 @@ Weakly stationarity states, basically, that the first and second moments of the 
 
 (1) the mean of the process i for $i \in {1, 2, ..., N}$ is constant over time;
 
-    $$
-    E[X_t] = \mu, \quad \forall t \in \mathbb{Z}.
-    $$
-    
-where $E[X_t] = \frac{1}{N} \sum_{i=1}^{N} X_t^{(i)}$.
+$$
+E[X_t] = \mu, \quad \forall t \in \mathbb{Z}.
+$$
+
 
 (2) the variance is constant over time; and
 
-    $$
-    Var(X_t) = \sigma^2, \quad \forall t \in \mathbb{Z}.
-    $$
+$$
+Var(X_t) = \sigma^2, \quad \forall t \in \mathbb{Z}.
+$$
     
-where $Var[X_t] = \frac{1}{N} \sum_{i=1}^{N} (X_t^{(i)} - E[X_t])^2$.
     
 (3) the autocovariance between two time points depends only on the time lag $(h = t_2 - t_1$, and not on the actual times $t_1$ and $t_2$
     
-    $$
-    Cov(X_t, X_{t+h}) = \gamma(h), \quad \forall t, h \in \mathbb{Z}.
-    $$
+$$
+Cov(X_t, X_{t+h}) = \gamma(h), \quad \forall t, h \in \mathbb{Z}.
+$$
 
 The transition to a probability model occurs when we consider all possible realizations with the same statistical properties (or, at least, the first two moments) as the recorded one. Thus, we create an artificially infinite number of realizations. This is the so-called ensemble. Due to the fact that we are assuming stationarity, we can assume that e.g. the time average of each realization (including, obviously, the actual one) ${X_t^{(1)}}, {X_t^{(2)}}, ..., {X_t^{(n)}}$ is constant over time. That is,
 
 $$
 E[X_t^{(i)}] = E[X_t] = \mu
 $$
-$\forall i \in {1, 2, ..., N}$. Note that the time average is not only constant across t but the same for all realizations. Now, let mixing property holds. That is,
+
+
+$\forall i \in {1, 2, ..., N}$. Note that the time average is not only constant across t but it is the same for all realizations. This is due to the fact that all realizations comes from the same probability (ensemble) model. Now, let mixing property holds. That is,
 
 $$
 \lim_{t \to \infty} Cov(X_t, X_{t+h}) = 0.
 $$
-Therefore, by Ergodic theorem, we can conclude that
+
+Therefore, by the Ergodic theorem, we can conclude that
 
 $$
 \lim_{t \to \infty} \frac{1}{T} \sum_{t=1}^{T} X_t^{(i)} = E[X_t] = \mu,
 $$
+
 where the first equality is the ergodicity property, i.e., the equality of the time average with the ensemble average and the second equality comes from stationarity.
 
 ## Setup
@@ -104,8 +102,9 @@ N = 1000 # Number of simulations (different realizations of the process).
 Now, consider two stochastic processes: an AR(1)
 
 $$
-y_t = \phi_1 y_{t-1} + \epsilon_t
+X_t = \phi_1 X_{t-1} + \epsilon_t
 $$
+
 where we assume that $\phi = 0.5$, so the process is not only stationary but causal, that is, the roots of the process are outside of the unitary circle, so the process can be expressed as a function of only past observations. It ensures the process does not rely on future inputs, making it feasible for real-world prediction. (I know, a somehow weird property to call it 'causality', but basically causality is just invertibility for AR processes. That is, a causal AR can be expressed as a MA($\infty$) and an invertible MA can be rewritten as a -causal- AR($\infty$)).
 
 
@@ -134,7 +133,7 @@ end
 and a random walk
 
 $$
-x_t = x_{t-1} + u_t
+X_t = X_{t-1} + u_t
 $$
 
 
@@ -149,7 +148,7 @@ end
 ## random_walk (generic function with 1 method)
 ```
 
-Note that, as said, the AR is stationary while the random walk is not. In particular, $E[X_t] = X_{t-1}$, do the mean is far from being constant. Also can be checked that the variance is not constant and that autocovariance depends not only on the lags, but on time.
+Note that, for the random walk process, $E[X_t] = X_{t-1}$, so the mean is far from being constant. Also can be checked that the variance is not constant and that autocovariance depends not only on the lags, but on time. Hence, this is not a stationary process.
 
 ### Simulation and parallelization
 
@@ -158,61 +157,7 @@ The following chunk basically generates, for each of N simulations, a random wal
 
 ```julia
 random_walks = Vector{Vector{Float64}}(undef, N)
-```
-
-```
-## 1000-element Vector{Vector{Float64}}:
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##    ⋮
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-```
-
-```julia
 ar1_processes = Vector{Vector{Float64}}(undef, N) # The undef keyword indicates that the vectors are being allocated without initializing the values right away. They will be filled during the parallelized loop.
-```
-
-```
-## 1000-element Vector{Vector{Float64}}:
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##    ⋮
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-##  #undef
-```
-
-```julia
 
 Threads.@threads for i in 1:N
     random_walks[i] = random_walk(t)
@@ -237,35 +182,35 @@ Each thread computes its assigned subset of random walks and AR(1) processes ind
 
 ### Plot the results
 
-The code below creates an animation where, as the sample size increases from 1 to N, we generate plots of random walks and AR(1) processes, along with histograms of their mean values.
+The code below creates an animation where, as the sample size increases from 1 to N, random walks and AR(1) processes are generated along with histograms of their time averages. The animated plot is included in the folder.
 
 Basically, the code is generating an animated visualization where, as the sample size (i.e., the number of simulations, N) increases, several things are calculated. For each simulation, the code calculates the (ensemble) means of random walks and AR(1) processes in parallel. It then visualizes the random walks, AR(1) processes, and the distributions of their means, showing how the data and the mean distributions evolve as N grows.
 
 
 ```julia
 animation = @animate for i in 1:50
-    S = Int(N * i / 50) # For computational reasons, I rename as S the number of simulations because I plot them in bunches. Doing it 1 by 1 would be a pain.
     
-    sampled_random_walks = random_walks[1:S]
-    sampled_ar1_processes = ar1_processes[1:S]
+    sample_size = Int(N * i / 100)
+    sampled_random_walks = random_walks[1:sample_size]
+    sampled_ar1_processes = ar1_processes[1:sample_size]
 
-    # Parallelized mean calculation
-    random_walk_averages = Vector{Float64}(undef, S)
-    ar1_averages = Vector{Float64}(undef, S)
+    random_walk_averages = Vector{Float64}(undef, sample_size)
+    ar1_averages = Vector{Float64}(undef, sample_size)
 
-    Threads.@threads for j in 1:S
+    Threads.@threads for j in 1:sample_size
         random_walk_averages[j] = mean(sampled_random_walks[j])
         ar1_averages[j] = mean(sampled_ar1_processes[j])
     end
 
+    
     p1 = plot(title="Random Walks", legend=false)
     for rw in sampled_random_walks
-        plot!(p1, rw, lw=0.5, alpha=0.3, color=RGB(rand(), rand(), rand()))
+        plot!(p1, rw, lw=0.5, alpha=0.3, color=RGB(rand(), rand(), rand()))  # Random colors
     end
 
     p2 = plot(title="AR(1) Processes", legend=false)
     for ar in sampled_ar1_processes
-        plot!(p2, ar, lw=0.5, alpha=0.3, color=RGB(rand(), rand(), rand()))
+        plot!(p2, ar, lw=0.5, alpha=0.3, color=RGB(rand(), rand(), rand()))  # Random colors
     end
 
     p3 = histogram(random_walk_averages, bins=30, normalize=true, alpha=0.5,
@@ -277,27 +222,14 @@ animation = @animate for i in 1:50
 end
 ```
 
-```
-## Animation("C:\\Users\\carlo\\AppData\\Local\\Temp\\jl_g3ODg4", ["000001.png", "000002.png", "000003.png", "000004.png", "000005.png", "000006.png", "000007.png", "000008.png", "000009.png", "000010.png"  …  "000041.png", "000042.png", "000043.png", "000044.png", "000045.png", "000046.png", "000047.png", "000048.png", "000049.png", "000050.png"])
-```
 
 ```julia
-
-# Save the animation as a GIF
-gif_filename = "ergodic_animation.gif"
+gif(animation, "animated_processes_and_histograms_parallel.gif", fps=4)
 ```
 
-```
-## "ergodic_animation.gif"
-```
 
-```julia
-gif(animation, gif_filename, fps=5)  # Adjust frame rate as needed
-```
+![Ergodic Theorem GIF](ergodic_animation.gif)
 
-```
-## Plots.AnimatedGif("C:\\Users\\carlo\\Documents\\GitHub\\Time Series\\ergodic_animation.gif")
-```
 
 On the one hand, for the AR(1) process, the sample means become increasingly concentrated around zero as the sample size grows, reflecting the process's ergodic behavior. On the other hand, for the random walk, the sample means show wider and wider tails as N increases. That is, while the ensemble mean is zero (i.e., the average across the simulations) as S goes to infinity, the time average (that is, the average across t for each simulation) is not zero, as t goes to infinity. That is why the tails of the random walk processes keep increasing as the number of simulations increases, contrasting with the remarkably narrow tails of the AR processes. This behavior reflects the non-ergodic nature of random walk process. A random walk does not converge to a fixed mean because the process tends to "drift" over time, and the time average does not converge to a well-defined constant value, thus violating the assumptions of the ergodic theorem. That is, while AR processes mean reversion, that is not the case for random walks, which impairs stationarity and, therefore, ergodicity.
 
@@ -330,6 +262,7 @@ the t-statistic:
 $$
 t = \frac{\bar{X}}{\text{SE}(\bar{X})}
 $$
+
 
 ```julia
 function t_statistic(x)
@@ -406,26 +339,26 @@ ts
 
 ```
 ## 1000×2 Matrix{Float64}:
-##    4.38855    0.580173
-##   -8.83004    0.878678
-##   16.0917    -0.694866
-##  -26.3264     0.627593
-##  -13.6324    -0.0487938
-##   -0.203715  -0.796267
-##   -3.60586   -0.39275
-##  -22.2897    -0.0400098
-##   -4.80797    2.5039
-##  -10.7642    -3.56634
-##    ⋮         
-##  -15.946     -0.309225
-##   15.4458    -0.724898
-##  -13.7132     0.698638
-##   -0.542459   2.9367
-##   -8.88753   -3.45635
-##  -34.8353     0.2982
-##   15.0854    -2.78134
-##  -16.1881     1.73955
-##    7.75585   -1.7511
+##   -0.00805635   2.76643
+##    7.39199      3.04435
+##  -24.2581      -4.25882
+##    8.00836      0.86128
+##   11.9743      -0.256987
+##   19.6417       1.18983
+##   15.8322      -1.63455
+##  -13.9767       3.61838
+##    6.77413     -1.49862
+##   -3.92575     -0.598776
+##    ⋮           
+##   19.2458      -3.05214
+##   27.7266       0.546459
+##  -11.2193      -1.13726
+##   -0.531492    -0.238301
+##   -7.9369      -1.69385
+##   22.4093       0.750197
+##  -22.068       -2.18624
+##    8.64008     -1.64105
+##   -8.47728      0.445851
 ```
     
 
@@ -444,26 +377,26 @@ R2
 
 ```
 ## 1000×2 Matrix{Float64}:
-##  0.964917  0.230476
-##  0.82957   0.333436
-##  0.974894  0.365848
-##  0.752668  0.353491
-##  0.92601   0.24772
-##  0.895938  0.0667819
-##  0.984284  0.399367
-##  0.918438  0.0422521
-##  0.698519  0.344748
-##  0.884629  0.219981
+##  0.940891   0.331271
+##  0.985732   0.333093
+##  0.933545   0.137429
+##  0.955016   0.205896
+##  0.713237   0.173789
+##  0.918209   0.326281
+##  0.91863    0.102102
+##  0.901075   0.173469
+##  0.86796    0.113886
+##  0.92806    0.357478
 ##  ⋮         
-##  0.971985  0.172939
-##  0.898882  0.320484
-##  0.94203   0.195724
-##  0.851466  0.0995471
-##  0.935747  0.206459
-##  0.821166  0.242711
-##  0.896525  0.27037
-##  0.96417   0.260064
-##  0.985163  0.354201
+##  0.896338   0.26056
+##  0.902707   0.177663
+##  0.899073   0.254766
+##  0.969714  -0.0526198
+##  0.986791   0.231682
+##  0.875116   0.148794
+##  0.933128   0.212365
+##  0.922962   0.1953
+##  0.791085   0.243452
 ```
 
 
@@ -478,7 +411,7 @@ for i in 1:N
 end
 ```
 
-Finally, given that I already computed the t-statistic, I can check the (relative) number of times the null is rejected. That is, that $t > critical \ value$.
+Finally, given that I already computed the t-statistic, I can check the (relative) number of times the null is rejected:
 
 
 ```julia
