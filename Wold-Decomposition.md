@@ -378,7 +378,7 @@ var_best = best_ssr / length(y)
 
 
 $$
-\text{Var}_{\text{ary}} = \frac{\text{SSR}_{\text{ary}}}{n}
+Var_{\text{ary}} = \frac{\text{SSR}_{\text{ary}}}{n}
 $$
 
 
@@ -392,7 +392,7 @@ var_ary = ary_ssr / length(y)
 
 
 $$
-\text{Var}_{\text{wold}} = \frac{\text{SSR}_{\text{wold}}}{n}
+Var_{\text{wold}} = \frac{\text{SSR}_{\text{wold}}}{n}
 $$
 
 
