@@ -177,8 +177,9 @@ Second, 'hcat([circshift(y, i) for i in 1:lags])' horizontally concatenates arra
 
 For illustration, let $y = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]$. Similar to the actual example, suppose we need to compute 10 lags of this process. In this case, the expression hcat([circshift(y, i) for i in 1:lags]...) generates the following **matrix**:
 
-\[
-X_{\text{ary}} = \begin{bmatrix}
+$$
+X_{\text{ary}} = 
+\begin{bmatrix}
 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 \\
 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\
 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & \text{NaN} \\
@@ -191,7 +192,7 @@ X_{\text{ary}} = \begin{bmatrix}
 11 & 12 & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} \\
 12 & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN} & \text{NaN}
 \end{bmatrix}
-\]
+$$
 
 while 'hcat([circshift(y, i) for i in 1:lags])' (note here the absence of the splat operator, i.e., the three dots) gives the following **list**:
 
