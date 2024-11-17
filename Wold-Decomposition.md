@@ -52,12 +52,12 @@ where the command 'circshift(y, i)' shifts the values of the array y by i positi
 By the Linear projection theorem, the BLP (assuming the DGP is known) can be computed as:
 
 $$
-\beta = (X_{best} X_{best}^\top)^{-1} X_{best} y
+\beta = (X_{\text{best}} X_{\text{best}}^\top)^{-1} X_{\text{best}} \ y
 $$
 where the three regressors above,  $(1, \cdot u(t-1), and \cdot u(t-1) \cdot u(t-2))$, are merged into a single matrix called $X_{best}$. Thus, I run OLS of y on $X_{best}$. In addition to the BLP, I also get the sum of squared residuals, i.e.,
 
 $$
-\text{SSR} = \sum_{t=1}^n \left( y_t - \hat{y}_t \right)^2
+\text{SSR} = \sum_{t=1}^{n} \left(y_t - \hat{y}_t \right)^2
 $$
 in order to compute later the variance of the errors The reason is that, later, I will compare it with the variance of the residuals of the Wold's decomposition (and also the variance of the residuals of the AR model I estimate below). In Julia, this is done running the following chunk:
 
@@ -166,12 +166,7 @@ X_ary = hcat([circshift(y, i) for i in 1:lags]...)
 
 This code looks a bit weird, doesn't it? Let me explain it by parts, like Jack the Ripper:
 
-First of all,'[circshift(y, i) for i in 1:lags]' creates the following array:
-
-$$
-[circshift(y, 1), circshift(y, 2), \ldots, circshift(y, 10)]
-$$
-where, as I explained before, 'circshift(y, i)' lags the time series by i periods.
+First of all,'[circshift(y, i) for i in 1:lags]' creates the following array: '[circshift(y, 1), circshift(y, 2), ..., circshift(y, 10)]' where, as I explained before, 'circshift(y, i)' lags the time series by i periods.
 
 Second, 'hcat([circshift(y, i) for i in 1:lags])' horizontally concatenates arrays. Thus, a list of ten elements where each element is $circshift(y, i)$ for $i \in {1, 2, ..., 10}$ is obtained. However, for regression purposes, a matrix rather than a vector is required. That is the reason for the three dots after the squared brackets, called the 'splat operator'. This splat operator is used to "unpack" the list of arrays so that 'hcat' receives them as separate arguments.
 
