@@ -365,7 +365,7 @@ Using 30 lags is again arbitrary, but it allows to capture dependencies in the s
 Finally, I compare the variance of the residuals across each approach: the model assuming knowledge of the true DGP, the AR(10) model, and Wold's decomposition
 
 $$
-\text{Var}_{\text{best}} = \frac{\text{SSR}_{\text{best}}}{n}
+Var_{\text{best}} = \frac{\text{SSR}_{\text{best}}}{n}
 $$
 
 ```julia
