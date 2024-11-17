@@ -448,7 +448,7 @@ y = cumsum(u)
 which is a random walk. The best predictor for this model is:
 
 $$
-\mathbb{E}[x_t \mid \mathcal{F}_{t-1}] = x_{t-1}
+\mathbb{E}[x_t \mid F_{t-1}] = x_{t-1}
 $$
 
 
