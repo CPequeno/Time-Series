@@ -279,7 +279,7 @@ end
 
 which is useful for detecting first-order autocorrelation in the residuals of regression models. By comparing the residuals' behavior over time, it tells us whether the model has captured all relevant temporal patterns or if it needs adjustments (e.g., by including lagged variables, trends, or seasonality). Values around 2 suggest that the model residuals are independent, while values much smaller or larger than 2 indicate potential autocorrelation issues. Why? Because, when there is no autocorrelation, the numerator of the DW formula (the sum of squared differences between consecutive residuals) is not systematically large or small, and the denominator (the sum of squared residuals) is balanced. If the difference between the current and past errors is not random, it suggests the presence of either positive (DW < 2) or negative (DW > 2) autocorrelation. However, it is important to note that a DW statistic around 2 does not guarantee the absence of autocorrelation. Instead, it serves more as a rule of thumb. In contrast, a value that is substantially lower or higher than 2 can be confidently interpreted as indicating the presence of autocorrelation —either positive or negative, respectively.
 
-Next, I create a matrix of two columns and N rows to store the statistics for each realization of both processes too.
+Next, I built a matrix with two columns (one for each process) and N rows (one for each simulation) to store the statistics defined above.
 
 
 ```julia
@@ -412,3 +412,5 @@ end
 ```
 
 As it can be checked, the $DW \approx 1 < 2$, which implies positive autocorrelation (by construction, the existence of autocorrelation in an AR or a random walk was something to expect). Also, the null is rejected with higher probability for the random walk process than for the AR(1). However, for the random walk the test is not reliable because the process is not stationary. The growing variance of the sample mean in the random walk reduces the test's ability to detect whether the true mean is 0 or not. Even if the true mean is different from zero, as indeed is the case, the test may still fail to reject the null hypothesis due to this increasing variance. In contrast, the number of rejections for the AR process is close to the nominal significance level, owing to the stationarity of the process and the assumption of normally distributed errors with a mean of zero.
+
+Then, likely non-existent reader, could you ask: why did you include an inappropriate test in your code?' The reason is simple: I believe it is important to understand the limitations of these test statistics.
