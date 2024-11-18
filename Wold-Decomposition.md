@@ -48,12 +48,12 @@ where the command 'circshift(y, i)' shifts the values of the array y by i positi
 By the Linear projection theorem, the BLP (assuming the DGP is known) can be computed as:
 
 $$
-\beta = (X_{\text{best}} X_{\text{best}}^\top)^{-1} X_{\text{best}} \ y
+\beta = (X_{\text{best}} X_{\text{best}})^{-1} X_{\text{best}} \ y
 $$
 where the three regressors above,  $(1, \cdot u(t-1), and \cdot u(t-1) \cdot u(t-2))$, are merged into a single matrix called $X_{best}$. Thus, I run OLS of y on $X_{best}$. In addition to the BLP, I also get the sum of squared residuals, i.e.,
 
 $$
-\text{SSR} = \sum_{t=1}^{n} \left(y_t - \hat{y}_t \right)^2
+\text{SSR} = \sum_{t=1}^{n} \left(y_t - \hat{y_t} \right)^2
 $$
 in order to compute later the variance of the errors The reason is that, later, I will compare it with the variance of the residuals of the Wold's decomposition (and also the variance of the residuals of the AR model I estimate below). In Julia, this is done running the following chunk:
 
