@@ -415,4 +415,5 @@ for i in 1:N
 end
 ```
 
-As it can be checked, the $DW \approx 1 < 2$, which implies positive autocorrelation (by construction, the existence of autocorrelation in an AR or a random walk was something to expect) and the null is rejected with high probability for the random walk process than for the AR(1), as expected.
+The Durbin-Watson statistic is aproximate 1, which indicates positive autocorrelation, as expected by construction. This is so because of the inherent autocorrelation present in an AR or random walk process. Furthermore, the null hypothesis is rejected with a higher probability for the random walk than for the AR(1) process, as anticipated.
+
