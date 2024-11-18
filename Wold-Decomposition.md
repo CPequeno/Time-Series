@@ -464,6 +464,7 @@ $$
 \hat{x_t} = E[x_t | F_{t-1}] = x_{t-1}
 $$
 
+where the sigma algebra $F_{t-1}$ is the collection of all events that are known (or measurable) based on the information available up to time $t$.
 
 ```julia
 X_best = hcat(circshift(y, 1))
