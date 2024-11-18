@@ -227,7 +227,7 @@ To make it even clearer, imagine that {$X_t$} are random walks which take only t
 Finally, for each simulation of each stochastic process, let me calculate the $R^2$:
 
 $$
-R^2 = 1 - \frac{\sum_{t=1}^{n} (X_t - \hat{X}_t)^2}{\sum_{t=1}^{n} (X_t - \bar{X})^2}
+R^{2} = 1 - \frac{\sum_{t=1}^{n} (X_t - \hat{X_t})^2}{\sum_{t=1}^{n} (X_t - \bar{X})^2}
 $$
 
 
