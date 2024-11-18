@@ -1,13 +1,3 @@
----
-title: "Ergodic Theorem"
-author: "Pareto Deficient (CPequeno)"
-output: 
-  html_document:
-    keep_md: true
-    self_contained: true
-    includes:
-      in_header: header.html
----
 
 ## Introduction
 
