@@ -1,7 +1,7 @@
 # **Ergodicity**
 ### Pareto Deficient (CPequeno)
 
-
+<p></p>
 
 ## Introduction
 
