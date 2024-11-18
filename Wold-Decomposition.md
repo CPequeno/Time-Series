@@ -401,7 +401,7 @@ var_wold = wold_ssr / length(y)
 ```
 
 
-The results are striking. When the DGP is known, the variance of the errors is 0.97, while the variances of the residuals for the AR(10) model and Wold's decomposition are 1.52 and 1.50, respectively. Notably, Wold's decomposition performs exceptionally well. However, this is not the end of the story.
+The results are stunning. When the DGP is known, the variance of the errors is 0.97, while the variances of the residuals for the AR(10) model and Wold's decomposition are 1.52 and 1.50, respectively. Notably, Wold's decomposition performs exceptionally well.
 
 
 ```julia
@@ -418,6 +418,8 @@ savefig(p, "wold_decomposition.png")
 ```
 
 ![Wold's Decomposition Plot](wold_decomposition.png)
+
+However, this is not the end of the story.
 
 ### Limitations of Wold's Decomposition
 
@@ -491,9 +493,10 @@ X_best = hcat(circshift(y, 1))
 ##  -20.552925708908383
 ```
 
-In such cases, the residual variance of Wold's decomposition becomes excessively high. Specifically, while the variance of the residuals under the assumption of knowing the true DGP is approximately 3.55, the variance of Wold's decomposition skyrockets to 753.80. To verify this, re-run the entire notebook, replacing the original DGP with the new one and updating the BP accordingly.
+In such cases, the residual variance of Wold's decomposition becomes excessively high. Specifically, while the variance of the residuals under the assumption of knowing the true DGP is approximately 3.55, the variance of Wold's decomposition skyrockets to 753.80. To verify this, re-run the entire notebook, replacing the original DGP with the new one and updating the BP accordingly. The results are shown below.
 
 
 
 ![Wold's Decomposition Plot](wold_decomposition2.png)
 
+As said, the Wold's decomposition does not perform very well (in fact, the approximation is terrible).
