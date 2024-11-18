@@ -24,6 +24,7 @@ This setup can be configured in Julia as follows:
 using Random
 using GLM
 using Statistics
+using Plots
 ```
 
 
@@ -42,15 +43,13 @@ where the command 'circshift(y, i)' shifts the values of the array y by i positi
 By the Linear projection theorem, the BLP (assuming the DGP is known) can be computed as:
 
 $$
-\beta = (X_{\text{best}} X_{\text{best}})^{-1} X_{\text{best}} \ y)
+\beta = (X_{\text{best}} X_{\text{best}}^\top)^{-1} X_{\text{best}} \ y
 $$
-
 where the three regressors above,  $(1, \cdot u(t-1), and \cdot u(t-1) \cdot u(t-2))$, are merged into a single matrix called $X_{best}$. Thus, I run OLS of y on $X_{best}$. In addition to the BLP, I also get the sum of squared residuals, i.e.,
 
 $$
-\text{SSR} = \sum_{t=1}^{n} \left(y_t - \hat{y_t} \right)^2
+\text{SSR} = \sum_{t=1}^{n} \left(y_t - \hat{y}_t \right)^2
 $$
-
 in order to compute later the variance of the errors The reason is that, later, I will compare it with the variance of the residuals of the Wold's decomposition (and also the variance of the residuals of the AR model I estimate below). In Julia, this is done running the following chunk:
 
 
@@ -357,7 +356,7 @@ Using 30 lags is again arbitrary, but it allows to capture dependencies in the s
 Finally, I compare the variance of the residuals across each approach: the model assuming knowledge of the true DGP, the AR(10) model, and Wold's decomposition
 
 $$
-Var_{\text{best}} = \frac{\text{SSR}_{\text{best}}}{n}
+\text{Var}_{\text{best}} = \frac{\text{SSR}_{\text{best}}}{n}
 $$
 
 ```julia
@@ -370,7 +369,7 @@ var_best = best_ssr / length(y)
 
 
 $$
-Var_{\text{ary}} = \frac{\text{SSR}_{\text{ary}}}{n}
+\text{Var}_{\text{ary}} = \frac{\text{SSR}_{\text{ary}}}{n}
 $$
 
 
@@ -384,7 +383,7 @@ var_ary = ary_ssr / length(y)
 
 
 $$
-Var_{\text{wold}} = \frac{\text{SSR}_{\text{wold}}}{n}
+\text{Var}_{\text{wold}} = \frac{\text{SSR}_{\text{wold}}}{n}
 $$
 
 
@@ -400,6 +399,21 @@ var_wold = wold_ssr / length(y)
 The results are striking. When the DGP is known, the variance of the errors is 0.97, while the variances of the residuals for the AR(10) model and Wold's decomposition are 1.52 and 1.50, respectively. Notably, Wold's decomposition performs exceptionally well. However, this is not the end of the story.
 
 
+```julia
+y_pred_ary = predict(ary_model, X_ary)
+y_pred_wold = predict(wold_model, X_wold)
+
+p = plot(1:n, y, label="Original Process", xlabel="Time", ylabel="Value", color=:blue, linewidth=2)
+plot!(p, 1:n, y_pred_ary, label="Deterministic (AR(10))", linestyle=:dash, color=:red, linewidth=2)
+plot!(p, 1:n, y_pred_wold .+ residuals_ary, label="Wold's Decomposition", linestyle=:dot, color=:green, linewidth=2)
+
+title!(p, "Comparison of Models")
+
+savefig(p, "wold_decomposition.png")
+```
+
+![Wold's Decomposition Plot](wold_decomposition.png)
+
 ### Limitations of Wold's Decomposition
 
 The performance of Wold's decomposition significantly deteriorates when the model involves high nonlinearities or is a non-stationary process, such as a random walk. For instance, consider the case where the actual DGP is
@@ -407,6 +421,7 @@ The performance of Wold's decomposition significantly deteriorates when the mode
 $$
 x_t = x_{t-1} + u_t
 $$
+
 
 ```julia
 y = cumsum(u)
@@ -436,13 +451,12 @@ y = cumsum(u)
 ##  -20.383558806230127
 ```
 
-which is a random walk. The best predictor for this model is:
+which is a random walk. The best predictor for this model is
 
 $$
-\hat{x_t} = \mathbb{E}[x_t \mid F_{t-1}] = x_{t-1}
+\hat{x}_t = \mathbb{E}[x_t | \mathcal{F}_{t-1}] = x_{t-1}
 $$
 
-where $F_t$ represents a sigma-algebra or a filtration at time $t$.
 
 ```julia
 X_best = hcat(circshift(y, 1))
@@ -473,4 +487,8 @@ X_best = hcat(circshift(y, 1))
 ```
 
 In such cases, the residual variance of Wold's decomposition becomes excessively high. Specifically, while the variance of the residuals under the assumption of knowing the true DGP is approximately 3.55, the variance of Wold's decomposition skyrockets to 753.80. To verify this, re-run the entire notebook, replacing the original DGP with the new one and updating the BP accordingly.
+
+
+
+![Wold's Decomposition Plot](wold_decomposition2.png)
 
