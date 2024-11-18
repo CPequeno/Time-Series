@@ -1,6 +1,8 @@
 # Ergodicity
 ### Pareto Deficient (CPequeno)
 
+***
+
 <br>
 
 ## Introduction
@@ -71,7 +73,7 @@ $$
 X_t = \phi_1 X_{t-1} + \epsilon_t
 $$
 
-where we assume that $\phi = 0.5$, so the process is not only stationary but causal, that is, the roots of the process are outside of the unitary circle, so the process can be expressed as a function of only past observations. It ensures the process does not rely on future inputs, making it feasible for real-world prediction. (I know, a somehow weird property to call it 'causality', but basically causality is just invertibility for AR processes. That is, a causal AR can be expressed as a MA($\infty$) and an invertible MA can be rewritten as a -causal- AR($\infty$)).
+where we assume that $\phi = 0.5$, so the process is not only stationary but causal, that is, the roots of the process are outside of the unitary circle, so the process can be expressed as a function of only past observations. It ensures the process does not rely on future inputs, making it feasible for real-world prediction. (I know, a somehow weird property to call it 'causality', but basically causality is just invertibility for AR processes. That is, a causal AR can be expressed as a MA($\infty$) and an invertible MA can be rewritten as an AR($\infty$).
 
 
 ```julia
