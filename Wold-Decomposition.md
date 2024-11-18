@@ -52,13 +52,15 @@ where the command 'circshift(y, i)' shifts the values of the array y by i positi
 By the Linear projection theorem, the BLP (assuming the DGP is known) can be computed as:
 
 $$
-\beta = (X_{\text{best}} X_{\text{best}}^\top)^{-1} X_{\text{best}} \ y
+\beta = (X_{\text{best}} X_{\text{best}})^{-1} X_{\text{best}} \ y)
 $$
+
 where the three regressors above,  $(1, \cdot u(t-1), and \cdot u(t-1) \cdot u(t-2))$, are merged into a single matrix called $X_{best}$. Thus, I run OLS of y on $X_{best}$. In addition to the BLP, I also get the sum of squared residuals, i.e.,
 
 $$
-\text{SSR} = \sum_{t=1}^{n} \left(y_t - \hat{y}_t \right)^2
+\text{SSR} = \sum_{t=1}^{n} \left(y_t - \hat{y_t} \right)^2
 $$
+
 in order to compute later the variance of the errors The reason is that, later, I will compare it with the variance of the residuals of the Wold's decomposition (and also the variance of the residuals of the AR model I estimate below). In Julia, this is done running the following chunk:
 
 
@@ -365,7 +367,7 @@ Using 30 lags is again arbitrary, but it allows to capture dependencies in the s
 Finally, I compare the variance of the residuals across each approach: the model assuming knowledge of the true DGP, the AR(10) model, and Wold's decomposition
 
 $$
-\text{Var}_{\text{best}} = \frac{\text{SSR}_{\text{best}}}{n}
+Var_{\text{best}} = \frac{\text{SSR}_{\text{best}}}{n}
 $$
 
 ```julia
@@ -378,7 +380,7 @@ var_best = best_ssr / length(y)
 
 
 $$
-\text{Var}_{\text{ary}} = \frac{\text{SSR}_{\text{ary}}}{n}
+Var_{\text{ary}} = \frac{\text{SSR}_{\text{ary}}}{n}
 $$
 
 
@@ -392,7 +394,7 @@ var_ary = ary_ssr / length(y)
 
 
 $$
-\text{Var}_{\text{wold}} = \frac{\text{SSR}_{\text{wold}}}{n}
+Var_{\text{wold}} = \frac{\text{SSR}_{\text{wold}}}{n}
 $$
 
 
@@ -415,7 +417,6 @@ The performance of Wold's decomposition significantly deteriorates when the mode
 $$
 x_t = x_{t-1} + u_t
 $$
-
 
 ```julia
 y = cumsum(u)
@@ -445,12 +446,13 @@ y = cumsum(u)
 ##  -20.383558806230127
 ```
 
-which is a random walk. The best predictor for this model is
+which is a random walk. The best predictor for this model is:
 
 $$
-\hat{x}_t = \mathbb{E}[x_t | \mathcal{F}_{t-1}] = x_{t-1}
+\hat{x_t} = \mathbb{E}[x_t \mid F_{t-1}] = x_{t-1}
 $$
 
+where $F_t$ represents a sigma-algebra or a filtration at time $t$.
 
 ```julia
 X_best = hcat(circshift(y, 1))
