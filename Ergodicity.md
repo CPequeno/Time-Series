@@ -1,4 +1,4 @@
-# **Ergodicity**
+# Ergodicity
 ### Pareto Deficient (CPequeno)
 
 ***
