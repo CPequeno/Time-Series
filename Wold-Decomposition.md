@@ -461,7 +461,7 @@ y = cumsum(u)
 which is a random walk. The best predictor for this model is
 
 $$
-\hat{x_t} = E[x_t | F_{t-1}] = x_{t-1}
+\hat{x_t} = E[x_t | \mathcal{F_{t-1}}] = x_{t-1}
 $$
 
 where the sigma algebra $F_{t-1}$ is the collection of all events that are known (or measurable) based on the information available up to time $t$.
