@@ -361,7 +361,7 @@ Using 30 lags is again arbitrary, but it allows to capture dependencies in the s
 Finally, I compare the variance of the residuals across each approach: the model assuming knowledge of the true DGP, the AR(10) model, and Wold's decomposition
 
 $$
-\text{Var}_{\text{best}} = \frac{\text{SSR}_{\text{best}}}{n}
+Var_{\text{best}} = \frac{\text{SSR}_{\text{best}}}{n}
 $$
 
 ```julia
@@ -374,7 +374,7 @@ var_best = best_ssr / length(y)
 
 
 $$
-\text{Var}_{\text{ary}} = \frac{\text{SSR}_{\text{ary}}}{n}
+Var_{\text{ary}} = \frac{\text{SSR}_{\text{ary}}}{n}
 $$
 
 
@@ -388,7 +388,7 @@ var_ary = ary_ssr / length(y)
 
 
 $$
-\text{Var}_{\text{wold}} = \frac{\text{SSR}_{\text{wold}}}{n}
+Var_{\text{wold}} = \frac{\text{SSR}_{\text{wold}}}{n}
 $$
 
 
@@ -461,7 +461,7 @@ y = cumsum(u)
 which is a random walk. The best predictor for this model is
 
 $$
-\hat{x}_t = \mathbb{E}[x_t | \mathcal{F}_{t-1}] = x_{t-1}
+\hat{x_t} = E[x_t | F_{t-1}] = x_{t-1}
 $$
 
 
