@@ -52,7 +52,7 @@ where the command 'circshift(y, i)' shifts the values of the array y by i positi
 By the Linear projection theorem, the BLP (assuming the DGP is known) can be computed as:
 
 $$
-\beta = (X_{\text{best}} X_{\text{best}}^{-1} X_{\text{best}} \ y)
+\beta = (X_{\text{best}} X_{\text{best}})^{-1} X_{\text{best}} \ y)
 $$
 
 where the three regressors above,  $(1, \cdot u(t-1), and \cdot u(t-1) \cdot u(t-2))$, are merged into a single matrix called $X_{best}$. Thus, I run OLS of y on $X_{best}$. In addition to the BLP, I also get the sum of squared residuals, i.e.,
