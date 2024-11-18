@@ -1,6 +1,7 @@
 # Ergodicity
-***
 ### Pareto Deficient (CPequeno)
+
+***
 
 <br>
 
