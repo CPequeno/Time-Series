@@ -1,4 +1,9 @@
+# Wold Decomposition
+### Pareto Deficient (CPequeno)
 
+***
+
+<br>
 
 ## Introduction
 
