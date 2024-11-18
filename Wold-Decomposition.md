@@ -416,7 +416,6 @@ $$
 x_t = x_{t-1} + u_t
 $$
 
-
 ```julia
 y = cumsum(u)
 ```
@@ -451,6 +450,7 @@ $$
 \hat{x_t} = \mathbb{E}[x_t \mid F_{t-1}] = x_{t-1}
 $$
 
+where $F_t$ represents a sigma-algebra or a filtration at time $t$.
 
 ```julia
 X_best = hcat(circshift(y, 1))
