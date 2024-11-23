@@ -165,9 +165,7 @@ Each thread computes its assigned subset of random walks and AR(1) processes ind
 
 ### Plot the results
 
-The code below creates an animation where, as the sample size increases from 1 to N, random walks and AR(1) processes are generated along with histograms of their time averages. The animated plot is included in the folder.
-
-Basically, the code is generating an animated visualization where, as the sample size (i.e., the number of simulations, N) increases, several things are calculated. For each simulation, the code calculates the (ensemble) means of random walks and AR(1) processes in parallel. It then visualizes the random walks, AR(1) processes, and the distributions of their means, showing how the data and the mean distributions evolve as N grows.
+The following code creates an animation that shows how increasing the sample size (i.e., the number of simulations, 𝑁) affects the ensemble means of random walks and AR(1) processes.
 
 
 ```julia
