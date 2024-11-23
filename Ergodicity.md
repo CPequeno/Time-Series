@@ -7,7 +7,7 @@
 
 ## Introduction
 
-This document provides an intuitive explanation of the ergodic theorem. The theorem asserts that if a process meets two key conditions —weak stationarity and the mixing property— the time series mean will converge (in probability or almost surely, depending of the ergodic theorem) to the ensemble mean. This theorem is a kind of (weak) law of large numbers (WLLN) where (1) identical distributed property is replaced by weak stationarity, which ensures the process has a constant mean over time and an autocovariance function that depends solely on the number of lags, and (2) the independent assumption is replaced by the mixing property, which guarantees that as the time intervals between observations grow, the dependence between variables diminishes to the point of being negligible.
+This document provides an intuitive explanation of the ergodic theorem. The theorem asserts that if a process meets two key conditions —(weak) stationarity and the mixing property— the time series mean will converge (in probability or almost surely, depending of the ergodic theorem) to the ensemble mean. This theorem is a kind of (weak) law of large numbers (WLLN) where (1) identical distributed property is replaced by weak stationarity, which ensures the process has a constant mean over time and an autocovariance function that depends solely on the number of lags, and (2) the independent assumption is replaced by the mixing property, which guarantees that as the time intervals between observations grow, the dependence between variables diminishes to the point of being negligible.
 
 ## Setup
 
