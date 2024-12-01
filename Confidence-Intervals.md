@@ -146,7 +146,7 @@ Now, I plot the t-statistics for the two models:
 
 ![t-statistics Plot](t-statistics.png)
 
-The t-statistics are centered around 0, which suggests that the estimated coefficients, $\hat{\phi_1}$, $\hat{\phi_2}$, and $\hat{\theta}$ from the models are generally close to the true parameters, i.e., $\phi_1$, $\phi_2$, and $\theta$, because
+The t-statistics are centered around 0, which suggests that the estimated coefficients, $\hat{\phi_1}$, $\hat{\phi_2}$, and $\hat{\theta}$ from the models are generally close to the true parameters, i.e., $\phi_1$ and $\theta$, because
 
 $$
 t = \frac{\hat{\gamma} - \gamma}{SE(\hat{\gamma})}
