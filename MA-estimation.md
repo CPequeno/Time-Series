@@ -59,19 +59,18 @@ $$
 \rho_1 = \frac{\theta \sigma^2}{(1 + \theta^2) \sigma^2} = \frac{\theta}{1 + \theta^2}.
 $$
 
-As can be seen, this expression gives us the correlation in terms of $\theta$ The problem is that we do not know the actual autocorrelation of order 1. However, as usual, we can estimate it using the sample autocorrelation:
+As can be seen, this expression gives us the correlation in terms of \( \theta \). The problem is that we do not know the actual autocorrelation of order 1. However, as usual, we can estimate it using the sample autocorrelation:
 
 $$
-\hat{\rho}_1 = \frac{\sum_{t=2}^n (Y_t - \bar{Y})(Y_{t-1} - \bar{Y})}{\sum_{t=2}^n (Y_t - \bar{Y})^2}
+\hat{\rho}_1 = \frac{\sum_{t=2}^{n} (Y_t - \bar{Y})(Y_{t-1} - \bar{Y})}{\sum_{t=2}^{n} (Y_t - \bar{Y})^2}
 $$
 
+where \( \bar{Y} \) is the sample mean of the \( Y_t \) series.
 
-where $\bar{Y}$ is the sample mean of the $Y_t$ series.
-
-Finally, solving for $\hat{\theta}$ we obtain two possible solutions (because this is a quadratic function):
+Finally, solving for \( \hat{\theta} \), we obtain two possible solutions (because this is a quadratic function):
 
 $$
-\hat{\theta}_+ = \frac{1+ \sqrt{1-4\hat{\rho}_1^2}}{2\hat{\rho}_1} \quad \text{and} \quad \hat{\theta}_- = \frac{1- \sqrt{1-4\hat{\rho}_1^2}}{2\hat{\rho}_1}
+\hat{\theta}_+ = \frac{1 + \sqrt{1 - 4 \hat{\rho}_1^2}}{2 \hat{\rho}_1} \quad \text{and} \quad \hat{\theta}_- = \frac{1 - \sqrt{1 - 4 \hat{\rho}_1^2}}{2 \hat{\rho}_1}
 $$
 
 
