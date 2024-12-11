@@ -61,10 +61,9 @@ $$
 
 As can be seen, this expression gives us the correlation in terms of $\theta$ The problem is that we do not know the actual autocorrelation of order 1. However, as usual, we can estimate it using the sample autocorrelation:
 
-\[
+$$
 \hat{\rho}_1 = \frac{\sum_{t=2}^n (Y_t - \bar{Y})(Y_{t-1} - \bar{Y})}{\sum_{t=1}^n (Y_t - \bar{Y})^2}
-\]
-
+$$
 
 where $\bar{Y}$ is the sample mean of the $Y_t$ series.
 
