@@ -74,7 +74,7 @@ $$
 $$
 
 
-In addition, if we impose the stationarity assumption, i.e., $|\theta| < 1$, then $-\frac{1}{2} < \rho_1 < \frac{1}{2}$ or $0 < |\rho_1| < \frac{1}{2}$. Given these restrictions, only \hat{\theta}_- is a solution. However, we need to deal with extreme cases. The quadratic equation above assumes $1-4\rho_1^2 \geq 0$, otherwise the solution is imaginary, and in economics we only deal with real things, like invisible hands and so on. Thus, it is required to impose $\theta = 1$ if $\rho_1 > .5$ and $\theta = -1$ if $\rho_1 < .5$ to avoid this problem. Finally, if $\rho_1 = 0$, then $\theta = 0$.
+In addition, if we impose the stationarity assumption, i.e., $|\theta| < 1$, then $-\frac{1}{2} < \rho_1 < \frac{1}{2}$ or $0 < |\rho_1| < \frac{1}{2}$. Given these restrictions, only \hat{\theta}^{-} is a solution. However, we need to deal with extreme cases. The quadratic equation above assumes $1-4\rho_1^2 \geq 0$, otherwise the solution is imaginary, and in economics we only deal with real things, like invisible hands and so on. Thus, it is required to impose $\theta = 1$ if $\rho_1 > .5$ and $\theta = -1$ if $\rho_1 < .5$ to avoid this problem. Finally, if $\rho_1 = 0$, then $\theta = 0$.
 
 Now, let's simulate a particular MA(1). As always, these are the required packages: 
 
