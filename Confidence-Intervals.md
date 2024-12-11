@@ -146,7 +146,7 @@ Now, I plot the t-statistics for the two models:
 
 ![t-statistics Plot](t-statistics.png)
 
-The t-statistics are centered around 0, which suggests that the estimated coefficients, $\hat{\phi_1}$, $\hat{\phi_2}$, and $\hat{\theta}$ from the models are generally close to the true parameters, i.e., $\phi_1$, $\phi_2$, and $\theta$, because
+The t-statistics are centered around 0, which suggests that the estimated coefficients, $\hat{\phi_1}$, $\hat{\phi_2}$, and $\hat{\theta}$ from the models are generally close to the true parameters, i.e., $\phi_1$ and $\theta$, because
 
 $$
 t = \frac{\hat{\gamma} - \gamma}{SE(\hat{\gamma})}
@@ -297,10 +297,10 @@ olsnw_coverage = mean(ciolsnw)
 ## 0.938
 ```
 
-Note the similar coverage for both homoskedastic and Newey-West robust to heteroscedasticity and autocovariance (HAC) standard errors, with a slight advantage for the second ones. These results are reasonable given the structure of the AR(1) model and the large sample size. The Newey-West correction provides minimal benefit when there is no significant heteroscedasticity (i.e., errors are still white noise) or higher-order autocorrelation. As a result, confidence intervals and coverage rates are nearly identical. However, we should expect that, in general, the Newey-West (HAC) standard errors will be larger (smaller) than the homoscedastic ones due to their correction for potential positive (negative) autocovariance. The intuition is that there is less information to exploit (today's information is mostly the same as yesterday's), so the variance, which is somewhat the inverse of the available information, is larger.
+Note the similar coverage for both homoskedastic and Newey-West robust to heteroskedasticity and autocovariance (HAC) standard errors, with a slight advantage for the second ones. The Newey-West correction provides minimal benefit when there is no significant heteroskedasticity (i.e., errors are still white noise) or higher-order autocorrelation. As a result, confidence intervals and coverage rates are nearly identical. However, we should expect that, in general, the Newey-West (HAC) standard errors will be larger than the homoskedastic ones due to their correction for potential positive autocovariance. The intuition is that there is less information to exploit (today's information is mostly the same as yesterday's), so the variance, which is somewhat the inverse of the available information, is larger.
 
 
 
 ![t-statistics_2 Plot](t-statistics_2.png)
 
-As can be seen, the CIs calculated using the Newey-West standard errors are slightly wider. There is a reason why I focused on the AR(1) parameters. Note that one caveat regarding the MA(1) model should be noted. In general (i.e. outside of these Mickey Mouse examples) it is not possible to estimate an MA(q) model for any $q$ using OLS. The reason is that the errors are not observable, so $X_3$ cannot be estimated. Other methods, such as Gauss-Newton or Hannan-Rissanen, are explored in upcoming notebooks.
+As can be seen, the CIs calculated using the Newey-West standard errors are slightly wider. There is a reason why I focused on the AR(1) parameters. Note that one caveat regarding the MA(1) model should be noted. In general (i.e. outside of these Mickey Mouse examples) it is not possible to estimate an MA(q) model for any $q$ using OLS. The reason is that the errors are not observable. Other methods, such as Gauss-Newton or Hannan-Rissanen, are explored in upcoming notebooks.
