@@ -65,6 +65,7 @@ $$
 \hat{\rho}_1 = \frac{\sum_{t=2}^n (Y_t - \bar{Y})(Y_{t-1} - \bar{Y})}{\sum_{t=1}^n (Y_t - \bar{Y})^2}
 $$
 
+
 where $\bar{Y}$ is the sample mean of the $Y_t$ series.
 
 Finally, solving for $\hat{\theta}$ we obtain two possible solutions (because this is a quadratic function):
