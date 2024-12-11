@@ -61,17 +61,19 @@ $$
 
 As can be seen, this expression gives us the correlation in terms of $\theta$ The problem is that we do not know the actual autocorrelation of order 1. However, as usual, we can estimate it using the sample autocorrelation:
 
-$$
-\hat{\rho}_1 = \frac{\sum_{t=2}^n (Y_t - \bar{Y})(Y_{t-1} - \bar{Y})}{\sum_{t=1}^n (Y_t - \bar{Y})^2},
-$$
+\[
+\hat{\rho}_1 = \frac{\sum_{t=2}^n (Y_t - \bar{Y})(Y_{t-1} - \bar{Y})}{\sum_{t=1}^n (Y_t - \bar{Y})^2}
+\]
+
 
 where $\bar{Y}$ is the sample mean of the $Y_t$ series.
 
 Finally, solving for $\hat{\theta}$ we obtain two possible solutions (because this is a quadratic function):
 
 $$
-\hat{\theta}_+ = \frac{1+ \sqrt{1-4\hat{\rho_1^2}}}{2\hat{\rho_1}} \ and \ \hat{\theta}_- = \frac{1+ \sqrt{1-4\hat{\rho_1^2}}}{2\hat{\rho_1}}
+\hat{\theta}_+ = \frac{1+ \sqrt{1-4\hat{\rho_1}^2}}{2\hat{\rho_1}} \quad \text{and} \quad \hat{\theta}_- = \frac{1- \sqrt{1-4\hat{\rho_1}^2}}{2\hat{\rho_1}}
 $$
+
 
 In addition, if we impose the stationarity assumption, i.e., $|\theta| < 1$, then $-\frac{1}{2} < \rho_1 < \frac{1}{2}$ or $0 < |\rho_1| < \frac{1}{2}$. Given these restrictions, only \hat{\theta}_- is a solution. However, we need to deal with extreme cases. The quadratic equation above assumes $1-4\rho_1^2 \geq 0$, otherwise the solution is imaginary, and in economics we only deal with real things, like invisible hands and so on. Thus, it is required to impose $\theta = 1$ if $\rho_1 > .5$ and $\theta = -1$ if $\rho_1 < .5$ to avoid this problem. Finally, if $\rho_1 = 0$, then $\theta = 0$.
 
