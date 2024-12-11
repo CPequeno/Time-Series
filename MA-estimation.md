@@ -70,7 +70,7 @@ where $\bar{Y}$ is the sample mean of the $Y_t$ series.
 Finally, solving for $\hat{\theta}$, we obtain two possible solutions (because this is a quadratic function):
 
 $$
-\hat{\theta}^{\plus} = \frac{1 + \sqrt{1-4\hat{\rho_1^2}}}{2\hat{\rho_1}} \ and \ \hat{\theta}^{\minus} = \frac{1+ \sqrt{1-4\hat{\rho_1^2}}}{2\hat{\rho_1}}
+\hat{\theta}^{plus} = \frac{1 + \sqrt{1-4\hat{\rho_1^2}}}{2\hat{\rho_1}} \ and \ \hat{\theta}^{minus} = \frac{1+ \sqrt{1-4\hat{\rho_1^2}}}{2\hat{\rho_1}}
 $$
 
 
