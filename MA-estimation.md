@@ -1,4 +1,4 @@
-# Gauss-Newton and Hannan-Rissanen Methods for MA Processes
+# Gauss-Newton and Hannan-Rissanen Methods for MA Estimation
 ### Pareto Deficient (CPequeno)
 
 ***
