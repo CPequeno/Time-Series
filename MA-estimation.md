@@ -70,9 +70,9 @@ where $\bar{Y}$ is the sample mean of the $Y_t$ series.
 Finally, solving for $\hat{\theta}$, we obtain two possible solutions (because this is a quadratic function):
 
 $$
-\hat{\theta_{+}} = \frac{1 + \sqrt{1 - 4\hat{\rho_1^2}}}{2\hat{\rho_1}} 
+\hat{\theta}^{+} = \frac{1 + \sqrt{1 - 4\hat{\rho_1^2}}}{2\hat{\rho_1}} 
 \qquad \text{and} \qquad 
-\hat{\theta_{-}} = \frac{1 - \sqrt{1 - 4\hat{\rho_1^2}}}{2\hat{\rho_1}}
+\hat{\theta}^{-} = \frac{1 - \sqrt{1 - 4\hat{\rho_1^2}}}{2\hat{\rho_1}}
 $$
 
 
