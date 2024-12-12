@@ -70,11 +70,11 @@ where $\bar{Y}$ is the sample mean of the $Y_t$ series.
 Finally, solving for $\hat{\theta}$, we obtain two possible solutions (because this is a quadratic function):
 
 $$
-\hat{\theta}^{+} = \frac{1 + \sqrt{1-4\hat{\rho_1^2}}}{2\hat{\rho_1}} \ and \ \hat{\theta}^{-} = \frac{1+ \sqrt{1-4\hat{\rho_1^2}}}{2\hat{\rho_1}}
+\hat{\theta_+} = \frac{1 + \sqrt{1-4\hat{\rho_1^2}}}{2\hat{\rho_1}} \ and \ \hat{\theta_-} = \frac{1+ \sqrt{1-4\hat{\rho_1^2}}}{2\hat{\rho_1}}
 $$
 
 
-In addition, if we impose the stationarity assumption, i.e., $|\theta| < 1$, then $-\frac{1}{2} < \rho_1 < \frac{1}{2}$ or $0 < |\rho_1| < \frac{1}{2}$. Given these restrictions, only \hat{\theta}^{-} is a solution. However, we need to deal with extreme cases. The quadratic equation above assumes $1-4\rho_1^2 \geq 0$, otherwise the solution is imaginary, and in economics we only deal with real things, like invisible hands and so on. Thus, it is required to impose $\theta = 1$ if $\rho_1 > .5$ and $\theta = -1$ if $\rho_1 < .5$ to avoid this problem. Finally, if $\rho_1 = 0$, then $\theta = 0$.
+In addition, if we impose the stationarity assumption, i.e., $|\theta| < 1$, then $-\frac{1}{2} < \rho_1 < \frac{1}{2}$ or $0 < |\rho_1| < \frac{1}{2}$. Given these restrictions, only \hat{\theta_-} is a solution. However, we need to deal with extreme cases. The quadratic equation above assumes $1-4\rho_1^2 \geq 0$, otherwise the solution is imaginary, and in economics we only deal with real things, like invisible hands and so on. Thus, it is required to impose $\theta = 1$ if $\rho_1 > .5$ and $\theta = -1$ if $\rho_1 < .5$ to avoid this problem. Finally, if $\rho_1 = 0$, then $\theta = 0$.
 
 Now, let's simulate a particular MA(1). As always, these are the required packages: 
 
