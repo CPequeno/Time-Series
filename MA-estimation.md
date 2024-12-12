@@ -209,7 +209,7 @@ end
 
 ##### Hannan-Rissanen Algorithm
 
-The algorithm can be summarized as follows: First, an overfitted AR(p) model is fitted to the time series $Y_t$ using ordinary least squares (OLS). The residuals from this model, $\hat{\epsilon_t}$, are then computed. Next, these residuals are used in a regression where $Y_t$ is expressed as a function of lagged residuals, such as $\reallywidehat{\epsilon_{t-1}}$, $\reallywidehat{\epsilon_{t-2}}$, and so forth. This step provides the estimates for the MA parameters.
+The algorithm can be summarized as follows: First, an overfitted AR(p) model is fitted to the time series $Y_t$ using ordinary least squares (OLS). The residuals from this model, $\hat{\epsilon_t}$, are then computed. Next, these residuals are used in a regression where $Y_t$ is expressed as a function of lagged residuals, such as $\hat{\epsilon_{t-1}}$, $\hat{\epsilon_{t-2}}$, and so forth. This step provides the estimates for the MA parameters.
 
 The key advantages of the Hannan-Rissanen algorithm is its simplicity and the fact that it avoids iterative optimization, making it computationally efficient. The take aways are its higher variance with respect to Gauss-Newton method. That is, although more computationally efficient, Hannan-Rissanen is less efficient in terms of standard errors.
 
