@@ -67,7 +67,7 @@ $$
 where $\Pi^*$ is the adjoint of $\Pi$ and $C_{ZY}$ is the covariance operator from $\mathcal{E}$ to $\mathcal{F}$. After minimizing MSE, and by analogy with normal equations from OLS, we could be tempted to define the estimator of $\Pi$ as:
 
 $$
-\widehat{\Pi}^* = \widehat{V}_Z^{-1}\widehat{C}_{ZY}
+\hat{\Pi}^* = \hat{V}_Z^{-1}\hat{C}_{ZY}.
 $$
 
 However, recall $V_Z \in \mathbb{F}$ is compact, so $V_Z(e_j) = \lambda_j e_j$ with $\lambda_j \rightarrow 0$ as $j \rightarrow \infty$. This implies $V_Z^{-1}(e_j) = \frac{1}{\lambda_j}e_j \rightarrow \infty$, where $e_j$ is an orthonormal base. Hence, $V_Z$ is not invertible in the entire space $\mathcal{E}$. Also, generalized inverse does not help here because it is not continuous. Hence, we need to add some regularization term (similar to Ridge) to avoid singularity. In particular, Benatia, Carrasco and Florens (2017) use Tikhonov Regularization:
