@@ -73,8 +73,8 @@ $$
 However, recall $V_Z \in \mathbb{F}$ is compact, so $V_Z(e_j) = \lambda_j e_j$ with $\lambda_j \rightarrow 0$ as $j \rightarrow \infty$. This implies $V_Z^{-1}(e_j) = \frac{1}{\lambda_j}e_j \rightarrow \infty$, where $e_j$ is an orthonormal base. Hence, $V_Z$ is not invertible in the entire space $\mathcal{E}$. Also, generalized inverse does not help here because it is not continuous. Hence, we need to add some regularization term (similar to Ridge) to avoid singularity. In particular, Benatia, Carrasco and Florens (2017) use Tikhonov Regularization:
 
 $$
-\widehat{\Pi}_\alpha = \widehat{C}_{YZ} \left( \alpha I + \widehat{V}_Z \right)^{-1}
-and \quad \widehat{\Pi}^*_\alpha = (\alpha I + V_Z)^{-1} \widehat{C}_{ZY}
+\widehat{\Pi_\alpha} = \widehat{C_{YZ}} \left( \alpha I + \widehat{V_Z} \right)^{-1}
+and \quad \widehat{\Pi^*_\alpha} = (\alpha I + V_Z)^{-1} \widehat{C_{ZY}}
 $$
 
 where $\alpha > 0$ is the regularization parameter and $\widehat{C}_{YZ}$, and $\widehat{V}_Z$ are the empirical covariance operators.
@@ -85,26 +85,26 @@ where $\alpha > 0$ is the regularization parameter and $\widehat{C}_{YZ}$, and $
 Let's start with the (infinite) "normal equations":
 
 $$
-C_{ZY} \psi = (\alpha I + V_Z) \widehat{\Pi}_\alpha^* \psi.
+C_{ZY} \psi = (\alpha I + V_Z) \widehat{\Pi_\alpha^*} \psi.
 $$
 
 The sample analog of these equations is given by the following expression:
 
 $$
 \frac{1}{n} \sum_{i=1}^n z_i \langle y_i, \psi \rangle = 
-\alpha \widehat{\Pi}_\alpha^* \psi + \frac{1}{n} \sum_{i=1}^n z_i \langle z_i, \widehat{\Pi}_\alpha^* \psi \rangle.
+\alpha \widehat{\Pi_\alpha^*} \psi + \frac{1}{n} \sum_{i=1}^n z_i \langle z_i, \widehat{\Pi_\alpha^*} \psi \rangle.
 $$
 
 Given that we are working with sample counterparts, the data are effectively represented in a finite-dimensional (specifically, $n$-dimensional) space. The underlying functional objects remain infinite-dimensional though. However, by the compactness of the operator associated with the problem, we know that $\Pi$ can be well approximated using a finite number of basis functions. A natural choice for the basis could be constructed from the observed data ($z_1, ..., z_n$) or from an orthonormal basis such as eigenfunctions. Also, by the Riesz representation theorem, for a continuous linear functional $L$, there exists a unique representer $\widehat{\Pi}_{\alpha}^* \in \mathcal{F}$ such that
 
 $$
-L(z) = \langle z,  \widehat{\Pi}_{\alpha}^* \rangle, \quad \forall z \in \mathcal{F}.
+L(z) = \langle z,  \widehat{\Pi_{\alpha}^*} \rangle, \quad \forall z \in \mathcal{F}.
 $$
 
 Thus, the conditional expectation $E[Y \mid Z = z]$ can be written as $L(z)$. Hence, for each ($s$, $t$), we end up with the following expression:
 
 $$
-\hat{\pi}_{\alpha}(s, t) = \frac{1}{n} \, y(s)' (\alpha I + M)^{-1} z(t)
+\hat{\pi_{\alpha}}(s, t) = \frac{1}{n} \, y(s)' (\alpha I + M)^{-1} z(t)
 $$
 
 
