@@ -92,7 +92,7 @@ where we post-multiply each side by a vector $\psi$. The sample analog of these 
 
 $$
 \frac{1}{n} \sum_{i=1}^n z_i \langle y_i, \psi \rangle = 
-\alpha \widehat{\Pi_{\alpha}^*} \psi + \frac{1}{n} \sum_{i=1}^n z_i \langle z_i, \hat{\Pi_{\alpha}^*} \psi \rangle.
+\alpha \widehat{\Pi_{\alpha}^*} \psi + \frac{1}{n} \sum_{i=1}^n z_i \langle z_i, \widehat{\Pi_{\alpha}} \psi \rangle.
 $$
 
 Given that we are working with sample counterparts, the data are effectively represented in a finite-dimensional (specifically, $n$-dimensional) space. The underlying functional objects remain infinite-dimensional though. However, by the compactness of the operator associated with the problem, we know that $\Pi$ can be well approximated using a finite number of basis functions. A natural choice for the basis could be constructed from the observed data ($z_1, ..., z_n$) or from an orthonormal basis such as eigenfunctions. Also, by the Riesz representation theorem, for a continuous linear functional $L$, there exists a unique representer $\widehat{\Pi}_{\alpha}^* \in \mathcal{F}$ such that
@@ -287,7 +287,7 @@ final_table <- cbind(
 ```
 
 
-![](table.png){width=60%}
+<img src="table.png" width="60%" />
 
 On the one hand, mean-square error (MSE) decreases with sample size $n$, confirming consistency. On the other hand, MSE increases with $\sigma_u$. Also, the fixed regularization parameter precludes MSE from converging towards zero. In fact, it converges to $\| \Pi - \Pi_{\alpha} \|^2_{\text{HS}}$, which is the squared bias introduced by the regularization parameter. Finally, the coefficient of determination $R^2$ remain high for small $\sigma_u$, indicating good model fit.
 
@@ -351,4 +351,5 @@ legend("bottomright", legend = paste0("σ=", sdus), col = colors, lty = 1, cex =
 
 <center>**Examples of Simulated Functions**</center>
 
-![Examples of Simulated Functions](simulation.png)
+<center>![Examples of Simulated Functions](simulation.png)</center>
+
