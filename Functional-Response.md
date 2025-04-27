@@ -89,7 +89,7 @@ where $\alpha > 0$ is the regularization parameter and $\widehat{C}_{YZ}$, and $
 
 ### (Exact) Computation of the Estimator
 
-To compute $\widehat{\Pi^†}$ exactly, i.e., without relying on any discretization, we start with the (infinite) "normal equations" derived above:
+To compute $\widehat{\Pi_{\alpha}^†}$ exactly, i.e., without relying on any discretization, we start with the (infinite) "normal equations" derived above:
 
 $$
 C_{ZY} \psi = (\alpha I + V_Z) \widehat{\Pi_{\alpha}^†} \psi,
