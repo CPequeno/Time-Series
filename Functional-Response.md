@@ -113,9 +113,10 @@ $$
 Thus, the conditional expectation $E[Y \mid Z = z]$ can be written as $L(z)$. This uniqueness result allows us to work by simplicity with the dual -$\Pi_{\alpha}^*$-, but solve for the primal -$\Pi_{\alpha}$-. Hence, for each $t$, it follows from the equations above that $\Pi_{\alpha}$ is an integral operator with kernel function equal to:
 
 $$
-\hat{\pi_{\alpha}}(s, t) = \frac{1}{n} \, y(s)' (\alpha I + M)^{-1} z(t)
+\hat{\pi_{\alpha}}(s, t) = \frac{1}{n} \, \underline{y(s)}' (\alpha I + M)^{-1} \underline{z(t)}
 $$
 
+where $\underline{y(s)}$ and $\underline{z(t)}$ are the $n×1$ vectors with $i$th element $y_i(t)$, $z_i(t)$, respectively.
 
 ## Numerical Derivation
 
