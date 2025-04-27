@@ -61,7 +61,7 @@ $$
 and
 
 $$
-C_{ZY} = V_Z \Pi^*
+C_{ZY} = V_Z \widetilde{\Pi}
 $$
 
 where $\Pi^*$ is the adjoint of $\Pi$ and $C_{ZY}$ is the covariance operator from $\mathcal{E}$ to $\mathcal{F}$. After minimizing MSE, and by analogy with normal equations from OLS, we could be tempted to define the estimator of $\Pi$ as:
@@ -94,7 +94,7 @@ The sample analog of these equations is given by the following expression:
 
 $$
 \frac{1}{n} \sum_{i=1}^n z_i \langle y_i, \psi \rangle = 
-\alpha \widehat{\Pi_{\alpha}^*} \psi + \frac{1}{n} \sum_{i=1}^n z_i \langle z_i, \widehat{\Pi^{*}_{\alpha}} \psi \rangle.
+\alpha \widehat{\Pi_{\alpha}^*} \psi + \frac{1}{n} \sum_{i=1}^n z_i \langle z_i, \widehat{\Pi_{\alpha}} \psi \rangle.
 $$
 
 Given that we are working with sample counterparts, the data are effectively represented in a finite-dimensional (specifically, $n$-dimensional) space. The underlying functional objects remain infinite-dimensional though. However, by the compactness of the operator associated with the problem, we know that $\Pi$ can be well approximated using a finite number of basis functions. A natural choice for the basis could be constructed from the observed data ($z_1, ..., z_n$) so we obtain the following $n$ equations:
