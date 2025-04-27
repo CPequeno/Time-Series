@@ -68,10 +68,10 @@ $$
 and
 
 $$
-C_{ZY} = V_Z \Pi'
+C_{ZY} = V_Z \Pi^†
 $$
 
-where $\Pi†$ is the adjoint of $\Pi$ and $C_{ZY}$ is the covariance operator from $\mathcal{E}$ to $\mathcal{F}$. After minimizing MSE, and by analogy with normal equations from OLS, we could be tempted to define the estimator of $\Pi†$ as:
+where $\Pi^†$ is the adjoint of $\Pi$ and $C_{ZY}$ is the covariance operator from $\mathcal{E}$ to $\mathcal{F}$. After minimizing MSE, and by analogy with normal equations from OLS, we could be tempted to define the estimator of $\Pi^†$ as:
 
 $$
 \widehat{\Pi}' = \widehat{V_Z}^{-1}\widehat{C_{ZY}}.
