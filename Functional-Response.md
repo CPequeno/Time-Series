@@ -69,13 +69,13 @@ $$
 C_{ZY} = V_Z \Pi'
 $$
 
-where $\Pi'$ is the adjoint of $\Pi$ and $C_{ZY}$ is the covariance operator from $\mathcal{E}$ to $\mathcal{F}$. After minimizing MSE, and by analogy with normal equations from OLS, we could be tempted to define the estimator of $\Pi$ as:
+where $\Pi'$ is the adjoint of $\Pi$ and $C_{ZY}$ is the covariance operator from $\mathcal{E}$ to $\mathcal{F}$. After minimizing MSE, and by analogy with normal equations from OLS, we could be tempted to define the estimator of $\Pi'$ as:
 
 $$
 \widehat{\Pi}' = \widehat{V_Z}^{-1}\widehat{C_{ZY}}.
 $$
 
-However, recall $V_Z \in \mathbb{F}$ is compact, so $V_Z(e_j) = \lambda_j e_j$ with $\lambda_j \rightarrow 0$ as $j \rightarrow \infty$. This implies $V_Z^{-1}(e_j) = \frac{1}{\lambda_j}e_j \rightarrow \infty$, where $e_j$ is an orthonormal base. Hence, $V_Z$ is not invertible in the entire space $\mathcal{E}$. Also, generalized inverse does not help here because it is not continuous. Hence, we need to add some regularization term (similar to Ridge) to avoid singularity. In particular, Benatia, Carrasco and Florens (2017) use Tikhonov Regularization:
+However, recall $V_Z \in \mathbb{F}$ is compact, so $V_Z(e_j) = \lambda_j e_j$ with $\lambda_j \rightarrow 0$ as $j \rightarrow \infty$. This implies $V_Z^{-1}(e_j) = \frac{1}{\lambda_j}e_j \rightarrow \infty$, where $e_j$ is an orthonormal base. Hence, $V_Z$ is not invertible in the entire space $\mathcal{E}$. Also, generalized inverse does not help here because it is not continuous. Hence, the estimator of $\Pi'$ cannot be directly estimated directly, by computing the inverse or the pseudoinverse. Furthermore, we need to add some regularization term (similar to Ridge) to adress stability problems because of the reasons mentioned in the introduction. In particular, Benatia, Carrasco and Florens (2017) use Tikhonov Regularization:
 
 $$
 \widehat{\Pi_{\alpha}} = \widehat{C_{YZ}} (\alpha I + \widehat{V_Z})^{-1} \quad \text{and} \quad \widehat{\Pi_{\alpha}}' = (\alpha I + \widehat{V_Z})^{-1} \widehat{C{ZY}}
@@ -87,7 +87,7 @@ where $\alpha > 0$ is the regularization parameter and $\widehat{C}_{YZ}$, and $
 
 ### Computation of the Estimator
 
-Let's start with the (infinite) "normal equations":
+To compute $\widehat{\Pi}'$ exactly, i.e., without relying on any discretization, we start with the (infinite) "normal equations" derived above:
 
 $$
 C_{ZY} \psi = (\alpha I + V_Z) \widehat{\Pi_\alpha}' \psi,
@@ -109,13 +109,25 @@ $$
 \alpha \langle z_l, \widehat{\Pi_{\alpha}}' \psi \rangle + \frac{1}{n} \sum_{i=1}^n \langle z_l, z_i \rangle \langle z_i, \widehat{\Pi_{\alpha}}' \psi \rangle
 $$
 
-with $n$ unknowns $\langle z_l, \widehat{\Pi_{\alpha}}' \psi \rangle$. By the Riesz representation theorem, we know that, for a continuous linear functional $L$, there exists a unique representer $\widehat{\Pi}_{\alpha}' \in \mathcal{F}$ such that
+with $n$ unknowns $\langle z_l, \widehat{\Pi_{\alpha}}' \psi \rangle$. This gives us to the following result:
+
+$$
+\widehat{\Pi_{\alpha}}' \psi = \frac{1}{n} \underline{z}' (\alpha I + \widehat{V_Z})^{-1} \langle y_i, \psi \rangle.
+$$
+
+By the Riesz representation theorem, we know that, for a continuous linear functional $L$, there exists a unique representer $\widehat{\Pi}_{\alpha}' \in \mathcal{F}$ such that
 
 $$
 L(z) = \langle z,  \widehat{\Pi_{\alpha}}' \rangle, \quad \forall z \in \mathcal{F}.
 $$
 
-Thus, the conditional expectation $E[Y \mid Z = z]$ can be written as $L(z)$. This uniqueness result allows us to work by simplicity with the dual -$\Pi_{\alpha}'$-, but solve for the primal -$\Pi_{\alpha}$-. Hence, for each $t$, it follows from the equations above that $\Pi_{\alpha}$ is an integral operator with kernel function equal to:
+Thus, the conditional expectation $E[Y \mid Z = z]$ can be written as $L(z)$. This uniqueness result allows us to work with the dual -$\Pi_{\alpha}'$-, but solve for the primal -$\Pi_{\alpha}$-. In particular, consider $\widehat{\Pi_{\alpha}}$ for any $\phi \in \mathcal{F}$. (Note that, obviously, the domain over the vectors are defined changed.) Taking the inner product with respect to $\phi$ in the LHS and RHS of the equation above, we get the following equation: 
+
+$$
+\widehat{\Pi_{\alpha}}, \phi = \frac{1}{\alpha n} \sum_{i=1}^{n} \langle \phi, z_i \rangle \bigl(y_i - \widehat{\Pi_{\alpha}} - z_i \bigr)
+$$
+
+Note that, to compute $\widehat{\Pi_{\alpha}} \phi$, we need $\widehat{\Pi_{\alpha}} z_i$. But this is already computed in the dual! And, as Benatia, Carrasco and Florens (2017) show, it follows from this equations that $\Pi_{\alpha}$ is an integral operator with kernel function equal to:
 
 $$
 \hat{\pi_{\alpha}}(s, t) = \frac{1}{n} \, \underline{y(s)}' (\alpha I + M)^{-1} \underline{z(t)}
@@ -123,9 +135,12 @@ $$
 
 where $\underline{y(s)}$ and $\underline{z(t)}$ are the $n×1$ vectors with $i$th element $y_i(t)$, $z_i(t)$, respectively.
 
+Crystal clear, right? Of course not. This is a mess. So let's switch to a numerical approach. Up to now, I’ve sketched the exact, infinite-dimensional formulation to build your intuition. In reality, though, we never work with truly infinite-dimensional functions. We only ever see finite sets of sample points that, hopefully, are kind of sampled from those mathematical structures. The following section, computes a discrete approximation of the functional estimate and compares it with the "true" functional.
+
+
 ## Numerical Derivation
 
-Now, we proceed to the core of this notebook: a simulation study of the estimator presented above. First of all, we construct both a pseudo-continuous interval of [0, 1], consisting of 1000 equally-spaced discrete steps and a discretized interval of [0, 1] consisting of only 100 equally-spaced discrete steps:
+First of all, we construct both a quasicontinuous interval [0, 1], consisting of 1000 equally-spaced discrete steps and a discretized interval [0, 1], consisting of only 100 equally-spaced discrete steps:
 
 
 ``` r
@@ -152,7 +167,7 @@ idx <- round(seq(1,1000,length=100)) # This index is used to select a subset of 
 Δ_disc  <- diff(T_disc)[1]
 ```
 
-The observed discrete points, $T_disc$, are assumed to arise from an underlying (quasi-)continuous process, $T_cont$. To construct the sample distributions, we treat the quasi-continuous distributions as the true data-generating processes (DGPs) and sample from them accordingly. From this point onward, we refer to the quasi-continuous distribution as the true distribution for simplicity, although it is important to remember that the actual underlying distribution is continuous, not quasi-continuous.
+The observed discrete points, $T_disc$, are assumed to arise from an underlying (quasi)continuous process, $T_cont$. To construct the sample distributions, we treat the quasicontinuous distributions as the true data generating processes (DGPs) and sample from them accordingly. From this point onward, we refer to the quasicontinuous distribution as the true distribution for simplicity, although it is important to remember that the actual underlying distribution is continuous, not quasi-continuous and, hence, impossible to compute it exactly bu numerical methods. Although, maybe because I am a bit dysxelic, 1000 points is close enough to infinity for me.
 
 Let $\Pi$ to be an integral operator from $\mathcal{F} = L^2[0, 1]$ to $\mathcal{E} = L^2[0, 1]$, with kernel $\pi(s,t) = 1 - |s - t|^2$. Given so, we create the true operator using the (quasi)continuous data and then we extract the observed, discretized version.
 
