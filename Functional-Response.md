@@ -74,13 +74,13 @@ $$
 where $\Pi^†$ is the adjoint of $\Pi$ and $C_{ZY}$ is the covariance operator from $\mathcal{E}$ to $\mathcal{F}$. After minimizing MSE, and by analogy with normal equations from OLS, we could be tempted to define the estimator of $\Pi^†$ as:
 
 $$
-\widehat{\Pi}^† = \widehat{V_Z}^{-1}\widehat{C_{ZY}}.
+\widehat{\Pi^†} = \widehat{V_Z}^{-1}\widehat{C_{ZY}}.
 $$
 
 However, recall $V_Z \in \mathbb{F}$ is compact, so $V_Z(e_j) = \lambda_j e_j$ with $\lambda_j \rightarrow 0$ as $j \rightarrow \infty$. This implies $V_Z^{-1}(e_j) = \frac{1}{\lambda_j}e_j \rightarrow \infty$, where $e_j$ is an orthonormal base. Hence, $V_Z$ is not invertible in the entire space $\mathcal{E}$. Also, generalized inverse does not help here because it is not continuous. Hence, the estimator of $\Pi'$ cannot be directly estimated directly, by computing the inverse or the pseudoinverse. Furthermore, we need to add some regularization term (similar to Ridge) to adress stability problems because of the reasons mentioned in the introduction. In particular, Benatia, Carrasco and Florens (2017) use Tikhonov Regularization:
 
 $$
-\widehat{\Pi_{\alpha}} = \widehat{C_{YZ}} (\alpha I + \widehat{V_Z})^{-1} \quad \text{and} \quad \widehat{\Pi_{\alpha}}^† = (\alpha I + \widehat{V_Z})^{-1} \widehat{C{ZY}}
+\widehat{\Pi_{\alpha}} = \widehat{C_{YZ}} (\alpha I + \widehat{V_Z})^{-1} \quad \text{and} \quad \widehat{\Pi_{\alpha}^†} = (\alpha I + \widehat{V_Z})^{-1} \widehat{C{ZY}}
 $$
 
 
@@ -89,10 +89,10 @@ where $\alpha > 0$ is the regularization parameter and $\widehat{C}_{YZ}$, and $
 
 ### (Exact) Computation of the Estimator
 
-To compute $\widehat{\Pi}^†$ exactly, i.e., without relying on any discretization, we start with the (infinite) "normal equations" derived above:
+To compute $\widehat{\Pi^†}$ exactly, i.e., without relying on any discretization, we start with the (infinite) "normal equations" derived above:
 
 $$
-C_{ZY} \psi = (\alpha I + V_Z) \widehat{\Pi_\alpha}^† \psi,
+C_{ZY} \psi = (\alpha I + V_Z) \widehat{\Pi_{\alpha}^†} \psi,
 $$
 
 where we post-multiply each side by any vector $\psi \in \mathcal{E}$.
