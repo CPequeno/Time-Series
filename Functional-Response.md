@@ -126,7 +126,7 @@ $$
 Thus, the conditional expectation $E[Y \mid Z = z]$ can be written as $L(z)$. This uniqueness result allows us to work with the dual -$\Pi_{\alpha}'$-, but solve for the primal -$\Pi_{\alpha}$-. In particular, consider $\widehat{\Pi_{\alpha}}$ for any $\phi \in \mathcal{F}$. (Note that, obviously, the domain over the vectors are defined changed.) Taking the inner product with respect to $\phi$ in the LHS and RHS of the equation above, we get the following equation: 
 
 $$
-\widehat{\Pi_{\alpha}}, \phi = \frac{1}{\alpha n} \sum_{i=1}^{n} \langle \phi, z_i \rangle \bigl(y_i - \widehat{\Pi_{\alpha}} - z_i \bigr)
+\widehat{\Pi_{\alpha}} \phi = \frac{1}{\alpha n} \sum_{i=1}^{n} \langle \phi, z_i \rangle \bigl(y_i - \widehat{\Pi_{\alpha}} - z_i \bigr)
 $$
 
 Note that, to compute $\widehat{\Pi_{\alpha}} \phi$, we need $\widehat{\Pi_{\alpha}} z_i$. But this is already computed in the dual! And, as Benatia, Carrasco and Florens (2017) show, it follows from this equations that $\Pi_{\alpha}$ is an integral operator with kernel function equal to:
