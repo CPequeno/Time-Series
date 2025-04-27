@@ -349,5 +349,5 @@ for (sdu in sdus) {
 legend("bottomright", legend = paste0("σ=", sdus), col = colors, lty = 1, cex = 0.6)
 ```
 
-<center>![Examples of Simulated Functions](simulation.png)</center>
+![Examples of Simulated Functions](simulation.png)</center>
 
