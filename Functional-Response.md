@@ -383,3 +383,8 @@ legend("bottomright", legend = paste0("σ=", sdus), col = colors, lty = 1, cex =
 
 ![Examples of Simulated Functions](simulation.png)
 
+## References
+
+Benatia, D., Carrasco, M., & Florens, J.-P. (2017). *Functional linear regression with functional response*. *Journal of Econometrics, 201*(2), 269–291. https://doi.org/10.1016/j.jeconom.2017.08.008
+
+
