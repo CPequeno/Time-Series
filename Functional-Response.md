@@ -101,10 +101,10 @@ Given that we are working with sample counterparts, the data are effectively rep
 
 $$
 \frac{1}{n} \sum_{i=1}^n \langle z_l, z_i \rangle \langle y_i, \psi \rangle = 
-\langle z_l, \alpha \widehat{\Pi_{\alpha}^*} \psi \rangle + \frac{1}{n} \sum_{i=1}^n \langle z_l, z_i \rangle \langle z_i, \widehat{\Pi_{\alpha}} \psi \rangle.
+\alpha \langle z_l, \widehat{\Pi_{\alpha}^*} \psi \rangle + \frac{1}{n} \sum_{i=1}^n \langle z_l, z_i \rangle \langle z_i, \widehat{\Pi_{\alpha}} \psi \rangle
 $$
 
-Also, by the Riesz representation theorem, for a continuous linear functional $L$, there exists a unique representer $\widehat{\Pi}_{\alpha}^* \in \mathcal{F}$ such that
+with $n$ unknowns $\langle z_l, \widehat{\Pi_{\alpha}^*} \psi \rangle$. Also, by the Riesz representation theorem, for a continuous linear functional $L$, there exists a unique representer $\widehat{\Pi}_{\alpha}^* \in \mathcal{F}$ such that
 
 $$
 L(z) = \langle z,  \widehat{\Pi_{\alpha}^*} \rangle, \quad \forall z \in \mathcal{F}.
