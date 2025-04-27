@@ -22,15 +22,17 @@ $$
 Y = \Pi Z + U
 $$
 
-where $U$ is a zero mean random element of the $\mathcal{E}$ and $\Pi$ is a non random Hilbert-Schmidt operator from $\mathcal{F}$ to $\mathcal{E}$; Z is assumed to be exogenous; and $cov(Z, U) = 0$.
+where $U$ is a zero mean random variable from $\mathcal{E}$ and $\Pi$ is a non random Hilbert-Schmidt operator from $\mathcal{F}$ to $\mathcal{E}$; Z is assumed to be exogenous; and $cov(Z, U) = 0$.
 
-To understand what a Hilbert-Schmidt (HS) operator is, we need to understand before what an operator is. So let's proceed by parts like Jack the Ripper. An operator is basically a map between functions. Formally, an operator is a mapping
+Ok, problems begin. What is a Hilbert-Schmidt operator? Wait. To understand what a Hilbert-Schmidt (HS) operator is, we need to understand before what an operator is. So let's proceed by parts like Jack the Ripper.
+
+An operator is a mapping
 
 $$
-T: Z \to Y
+T: \mathcal{F} \to \mathcal{E}
 $$
 
-that assigns to each element $z \in \mathcal{F}$ a unique element $T(x) \in \mathcal{E}$. More specifically, we care about linear operators, which are operators that satisfies $T(\alpha z + \beta x) = \alpha T(z) + \beta T(x)$ for all $z, x \in \mathcal{F},\ \alpha, \beta \in \mathbb{R}$. Even more, a linear bounded operator is an operator which also satisfies that $\|T(z)\|_E \leq C \|z\|_F$ for all $z \in \mathcal{F}$. (Important: under linearity, boundedness is equivalent to continuity.) Finally, a Hilbert-Schmidt operator is a bounded linear operator that is compact and can be approximated by finite-rank operators (see below for details). This property is particularly valuable, as we are working with infinite-dimensional curves, and approximating them using a finite basis is very advantageous in practice. In fact, this is the heart of functional data analysis.
+that assigns to each element $z \in \mathcal{F}$ a unique element $T(z) \in \mathcal{E}$, where both objects: $z \in \mathcal{F}$ and $y \in \mathcal{E}$ are functions. More specifically, we care about linear operators, which are operators that satisfies $T(\alpha z + \beta x) = \alpha T(z) + \beta T(x)$ for all $z, x \in \mathcal{F},\ \alpha, \beta \in \mathbb{R}$. Even more, we care about linear bounded operators, which are linear operators which also satisfies that $\|T(z)\|_E \leq C \|z\|_F$ for all $z \in \mathcal{F}$. (Important: under linearity, boundedness is equivalent to continuity.) But we are not stopping there. There are deeper waters than those of bounded linear operators, and those are exactly the ones we want to dive into. Beyond bounded linear operators lie the Hilbert-Schmidt operators: bounded linear operators that are also compact and can be approximated by finite-rank operators. Pretty awesome, right? Actually, yes (and if you do not care, probably it's because you are something like an applied economist, so you should stop reading right now because here we do not negotiate with terrorists). For serious people, this property is particularly important because in functional data analysis (FDA), we work with infinite-dimensional objects like curves, and approximating them using a finite basis is crucial.
 
 In functional linear regression, the goal is to find a linear functional $L$ (that is, an operator whose codomain is $\mathbb{R}$) such that, for $z \in \mathcal{F}$, $E[Y \mid Z = z] = L(z)$. In plain English, that the prediction of $Y$ given the curve $Z=z$ is linear in $z$. By assuming continuity and given that $\mathcal{F}$ is a Hilbert space, the Riesz representer theorem applies. This theorem states that, under these assumptions, there is an unique element $\widehat{\Pi} \in \mathcal{F}$ such that
 
