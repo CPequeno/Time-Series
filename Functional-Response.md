@@ -85,7 +85,7 @@ $$
 where $\alpha > 0$ is the regularization parameter and $\widehat{C}_{YZ}$, and $\widehat{V}_Z$ are the empirical covariance operators.
 
 
-### Computation of the Estimator
+### (Exact) Computation of the Estimator
 
 To compute $\widehat{\Pi}'$ exactly, i.e., without relying on any discretization, we start with the (infinite) "normal equations" derived above:
 
@@ -138,7 +138,7 @@ where $\underline{y(s)}$ and $\underline{z(t)}$ are the $n×1$ vectors with $i$t
 Crystal clear, right? Of course not. This is a mess. So let's switch to a numerical approach. Up to now, I’ve sketched the exact, infinite-dimensional formulation to build your intuition. In reality, though, we never work with truly infinite-dimensional functions. We only ever see finite sets of sample points that, hopefully, hopefully, it's not too crazy to say are sampled from those mathematical structures. The following section, computes a discrete approximation of the functional estimate and compares it with the "true" functional. (The reason of the quotes is explained below.)
 
 
-## Numerical Derivation
+## Simulation and Discrete Observations
 
 First of all, we construct both a quasicontinuous interval [0, 1], consisting of 1000 equally-spaced discrete steps and a discretized interval [0, 1], consisting of only 100 equally-spaced discrete steps:
 
