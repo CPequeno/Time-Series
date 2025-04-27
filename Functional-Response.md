@@ -84,7 +84,7 @@ $$
 $$
 
 
-where $\alpha > 0$ is the regularization parameter and $\widehat{C}_{YZ}$, and $\widehat{V}_Z$ are the empirical covariance operators.
+where $\alpha > 0$ is the regularization parameter and $\widehat{C}_{YZ}$, and $\widehat{V}_Z$ are the empirical covariance operators. Note also the subscript in the estimator to indicate the bias derived from the penalization.
 
 
 ### (Exact) Computation of the Estimator
