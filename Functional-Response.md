@@ -137,7 +137,7 @@ $$
 
 where $\underline{y(s)}$ and $\underline{z(t)}$ are the $n×1$ vectors with $i$th element $y_i(t)$, $z_i(t)$, respectively.
 
-Crystal clear, right? Of course not. This is a mess. So let's switch to a numerical approach. Up to now, I’ve sketched the exact, infinite-dimensional formulation to build your intuition. In reality, though, we never work with truly infinite-dimensional functions. We only ever see finite sets of sample points that, hopefully, hopefully, it's not too crazy to say are sampled from those mathematical structures. The following section, computes a discrete approximation of the functional estimate and compares it with the "true" functional. (The reason of the quotes is explained below.)
+Crystal clear, right? Of course not. This is a mess. So let's switch to a numerical approach. Up to now, I’ve sketched the exact, infinite-dimensional formulation to build your intuition. In reality, though, we never work with truly infinite-dimensional functions. We only ever see finite sets of sample points that, hopefully, it's not too crazy to say are sampled from those mathematical structures. The following section, computes a discrete approximation of the functional estimate and compares it with the "true" functional. (The reason of the quotes is explained below.)
 
 
 ## Simulation and Discrete Observations
