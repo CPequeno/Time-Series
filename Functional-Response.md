@@ -135,7 +135,7 @@ $$
 
 where $\underline{y(s)}$ and $\underline{z(t)}$ are the $n×1$ vectors with $i$th element $y_i(t)$, $z_i(t)$, respectively.
 
-Crystal clear, right? Of course not. This is a mess. So let's switch to a numerical approach. Up to now, I’ve sketched the exact, infinite-dimensional formulation to build your intuition. In reality, though, we never work with truly infinite-dimensional functions. We only ever see finite sets of sample points that, hopefully, are kind of sampled from those mathematical structures. The following section, computes a discrete approximation of the functional estimate and compares it with the "true" functional.
+Crystal clear, right? Of course not. This is a mess. So let's switch to a numerical approach. Up to now, I’ve sketched the exact, infinite-dimensional formulation to build your intuition. In reality, though, we never work with truly infinite-dimensional functions. We only ever see finite sets of sample points that, hopefully, hopefully, it's not too crazy to say are sampled from those mathematical structures. The following section, computes a discrete approximation of the functional estimate and compares it with the "true" functional. (The reason of the quotes is explained below.)
 
 
 ## Numerical Derivation
@@ -177,7 +177,7 @@ pi_true_fine <- outer(T_cont, T_cont, function(s,t) 1 - (abs(s-t))^2)
 pi_true_disc <- pi_true_fine[idx, idx] # Dimension: 100 x 100
 ```
 
-The choice of such a kernel is motivated by its desirable theoretical properties in a regression context, such as positive definiteness.
+The choice of such a kernel is motivated by its desirable theoretical properties in a regression context (e.g., positive definiteness).
 
 Also, we set the regularization parameter, $\alpha$, at 0.01:
 
@@ -379,5 +379,5 @@ for (sdu in sdus) {
 legend("bottomright", legend = paste0("σ=", sdus), col = colors, lty = 1, cex = 0.6)
 ```
 
-![Examples of Simulated Functions](simulation.png)</center>
+![Examples of Simulated Functions](simulation.png)
 
