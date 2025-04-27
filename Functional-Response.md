@@ -88,7 +88,7 @@ $$
 C_{ZY} \psi = (\alpha I + V_Z) \widehat{\Pi_\alpha^*} \psi,
 $$
 
-where we post-multiply each side by a vector $\psi$.
+where we post-multiply each side by any vector $\psi \in \mathcal{E}$.
 
 The sample analog of these equations is given by the following expression:
 
@@ -104,13 +104,13 @@ $$
 \alpha \langle z_l, \widehat{\Pi_{\alpha}^*} \psi \rangle + \frac{1}{n} \sum_{i=1}^n \langle z_l, z_i \rangle \langle z_i, \widehat{\Pi_{\alpha}} \psi \rangle
 $$
 
-with $n$ unknowns $\langle z_l, \widehat{\Pi_{\alpha}} \psi \rangle$. Also, by the Riesz representation theorem, for a continuous linear functional $L$, there exists a unique representer $\widehat{\Pi}_{\alpha}^* \in \mathcal{F}$ such that
+with $n$ unknowns $\langle z_l, \widehat{\Pi_{\alpha}} \psi \rangle$. By the Riesz representation theorem, we know that, for a continuous linear functional $L$, there exists a unique representer $\widehat{\Pi}_{\alpha}^* \in \mathcal{F}$ such that
 
 $$
 L(z) = \langle z,  \widehat{\Pi_{\alpha}^*} \rangle, \quad \forall z \in \mathcal{F}.
 $$
 
-Thus, the conditional expectation $E[Y \mid Z = z]$ can be written as $L(z)$. Hence, for each ($s$, $t$), we end up with the following expression:
+Thus, the conditional expectation $E[Y \mid Z = z]$ can be written as $L(z)$. This uniqueness result allows us to work by simplicity with the dual -$\Pi_{\alpha}^*$-, but solve for the primal -$\Pi_{\alpha}$-. Hence, for each $t$, it follows from the equations above that $\Pi_{\alpha}$ is an integral operator with kernel function equal to:
 
 $$
 \hat{\pi_{\alpha}}(s, t) = \frac{1}{n} \, y(s)' (\alpha I + M)^{-1} z(t)
