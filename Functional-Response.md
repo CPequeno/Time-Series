@@ -319,7 +319,9 @@ final_table <- cbind(
 ```
 
 
-<img src="table.png" width="70%" />
+<div align="center">
+  <img src="table.png" width="70%" />
+</div>
 
 On the one hand, mean-square error (MSE) decreases with sample size $n$, confirming consistency. On the other hand, MSE increases with $\sigma_u$. Also, the fixed regularization parameter precludes MSE from converging towards zero. In fact, it converges to $\| \Pi - \Pi_{\alpha} \|^2_{\text{HS}}$, which is the squared bias introduced by the regularization parameter. Finally, the coefficient of determination $R^2$ remain high for small $\sigma_u$, indicating good model fit.
 
