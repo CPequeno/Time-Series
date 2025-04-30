@@ -123,7 +123,7 @@ $$
 L(z) = \langle z,  \widehat{\Pi_{\alpha}^†} \rangle, \quad \forall z \in \mathcal{F}.
 $$
 
-Thus, the conditional expectation $E[Y \mid Z = z]$ can be written as $L(z)$. This uniqueness result allows us to work with the dual -$\Pi_{\alpha}^†$-, but solve for the primal -$\Pi_{\alpha}$-. In particular, consider $\widehat{\Pi_{\alpha}}$ for any $\phi \in \mathcal{F}$. (Note that, obviously, the domain over the vectors are defined changed.) Taking the inner product with respect to $\phi$ in the LHS and RHS of the equation above, we get the following equation: 
+Thus, the conditional expectation $E[Y \mid Z = z]$ can be written as $L(z)$. This uniqueness result allows us to work with the dual, $\Pi_{\alpha}^†$, but solve for the primal, $\Pi_{\alpha}$. In particular, consider $\widehat{\Pi_{\alpha}}$ for any $\phi \in \mathcal{F}$. (Note that, obviously, the domain over the vectors are defined changed.) Taking the inner product with respect to $\phi$ in the LHS and RHS of the equation above, we get the following equation: 
 
 $$
 \widehat{\Pi_{\alpha}} \phi = \frac{1}{\alpha n} \sum_{i=1}^{n} \langle \phi, z_i \rangle \bigl(y_i - \widehat{\Pi_{\alpha}} - z_i \bigr)
