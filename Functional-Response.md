@@ -117,7 +117,7 @@ $$
 \widehat{\Pi_{\alpha}^†} \psi = \frac{1}{n} \underline{z}' (\alpha I + \widehat{V_Z})^{-1} \langle y_i, \psi \rangle.
 $$
 
-By the Riesz representation theorem, we know that, for a continuous linear functional $L$, there exists a unique representer $\widehat{\Pi}_{\alpha}^† \in \mathcal{F}$ such that
+By the Riesz representation theorem, we know that, for a continuous linear functional $L$, there exists a unique representer $\widehat{\Pi}_{\alpha}^†$ such that
 
 $$
 L(z) = \langle z,  \widehat{\Pi_{\alpha}^†} \rangle, \quad \forall z \in \mathcal{F}.
