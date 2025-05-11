@@ -169,7 +169,7 @@ idx <- round(seq(1,1000,length=100)) # This index is used to select a subset of 
 Δ_disc  <- diff(T_disc)[1]
 ```
 
-The observed discrete points, $T_disc$, are assumed to arise from an underlying (quasi)continuous process, $T_cont$. To construct the sample distributions, we treat the quasicontinuous distributions as the true data generating processes (DGPs) and sample from them accordingly. From this point onward, we refer to the quasicontinuous distribution as the true distribution for simplicity, although it is important to remember that the actual underlying distribution is continuous, not quasi-continuous and, hence, impossible to compute it exactly bu numerical methods. Although, maybe because I am a bit dysxelic, 1000 points is close enough to infinity for me.
+The observed discrete points, $T_{disc}$, are assumed to arise from an underlying (quasi)continuous process, $T_{cont}$. To construct the sample distributions, we treat the quasicontinuous distributions as the true data generating processes (DGPs) and sample from them accordingly. From this point onward, we refer to the quasicontinuous distribution as the true distribution for simplicity, although it is important to remember that the actual underlying distribution is continuous, not quasi-continuous and, hence, impossible to compute it exactly bu numerical methods. Although, maybe because I am a bit dysxelic, 1000 points is close enough to infinity for me.
 
 Let $\Pi$ to be an integral operator from $\mathcal{F} = L^2[0, 1]$ to $\mathcal{E} = L^2[0, 1]$, with kernel $\pi(s,t) = 1 - |s - t|^2$. Given so, we create the true operator using the (quasi)continuous data and then we extract the observed, discretized version.
 
